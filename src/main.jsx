@@ -13,8 +13,8 @@ const projects = [
     location: 'Toruń, Poland',
     tags: ['Redesign strategy', 'User research', 'Information architecture', 'Responsive UI', 'Accessibility'],
     accent: '#23B8D4',
-    image: '/assets/logafit-case.png',
-    pdf: '/assets/logafit-case-study.pdf',
+    image: 'assets/logafit-case.png',
+    pdf: 'assets/logafit-case-study.pdf',
     stats: [
       ['59%', 'użytkowników miało problem z nawigacją'],
       ['30%', 'szybsze wykonanie zadań nawigacyjnych'],
@@ -36,8 +36,8 @@ const projects = [
     location: 'Toruń, Poland',
     tags: ['Market research', 'Competitive analysis', 'User survey', 'Proto-personas', 'Flow diagrams', 'High-fidelity UI', 'Accessibility'],
     accent: '#8B7CF6',
-    image: '/assets/calmflow-case.png',
-    pdf: '/assets/calmflow-case-study.pdf',
+    image: 'assets/calmflow-case.png',
+    pdf: 'assets/calmflow-case-study.pdf',
     stats: [
       ['18', 'uczestników ankiety użytkowników'],
       ['$538M', 'prognozowana wartość rynku mental health do 2030'],
@@ -59,8 +59,8 @@ const projects = [
     location: 'Elbląg, Poland',
     tags: ['Market research', 'Competitive analysis', 'Wireframes', 'High-fidelity UI', 'Prototype', 'Accessibility'],
     accent: '#C9825D',
-    image: '/assets/cuffka-case.png',
-    pdf: '/assets/cuffka-case-study.pdf',
+    image: 'assets/cuffka-case.png',
+    pdf: 'assets/cuffka-case-study.pdf',
     stats: [
       ['43', 'high-fidelity screens'],
       ['2', 'motywy: light i dark mode'],
