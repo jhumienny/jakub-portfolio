@@ -80,7 +80,7 @@ const projects = [
     ],
     story: [
       'Cuffka powstała jako aplikacja dla osób, które lubią kawiarnie, ale chcą szybciej znaleźć dobre napoje, promocje i korzyści lojalnościowe bez szukania informacji po social mediach.',
-      'Proces objął research rynku, analizę konkurencji, rozmowę z użytkownikiem, flow diagramy, wireframe’y, projekt wysokiej wierności i prototyp w Figmie.',
+      'Proces objął research rynku, analizę konkurencji, rozmowę z użytkownikiem, flow diagramy, wireframe\'y, projekt wysokiej wierności i prototyp w Figmie.',
       'Projekt pokazał pełny proces produktowy: od zdefiniowania problemu po dopracowanie UI i ocenę dostępności.'
     ]
   }
@@ -150,184 +150,187 @@ function ProjectCard({ project, index }) {
   </a>;
 }
 
-function DonutChart({ pct, label, color }) {
-  const r = 36, c = 2 * Math.PI * r;
-  const dash = (pct / 100) * c;
+// Logafit teal from the PDF
+const T = '#3FBFA0';
+const T_DARK = '#0E2A1E';
+const T_LIGHT = '#EAF9F4';
+
+function Donut({ pct, label }) {
+  const r = 38, c = 2 * Math.PI * r, dash = (pct / 100) * c;
   return (
-    <div className="cs-donut">
-      <svg viewBox="0 0 100 100" width="110" height="110">
-        <circle cx="50" cy="50" r={r} fill="none" stroke="#e8f0ec" strokeWidth="13" />
-        <circle cx="50" cy="50" r={r} fill="none" stroke={color} strokeWidth="13"
-          strokeDasharray={`${dash} ${c - dash}`} strokeDashoffset={c * 0.25} strokeLinecap="round" />
-        <text x="50" y="46" textAnchor="middle" fontSize="17" fontWeight="900" fill="#102019">{pct}%</text>
+    <div className="lf-donut">
+      <svg viewBox="0 0 100 100" width="130" height="130">
+        <circle cx="50" cy="50" r={r} fill="none" stroke="#D5F0E8" strokeWidth="11"/>
+        <circle cx="50" cy="50" r={r} fill="none" stroke={T} strokeWidth="11"
+          strokeDasharray={`${dash} ${c - dash}`} strokeDashoffset={c * 0.25} strokeLinecap="round"/>
+        <text x="50" y="47" textAnchor="middle" fontSize="18" fontWeight="900" fill={T_DARK}>{pct}%</text>
       </svg>
-      <span>{label}</span>
+      <p>{label}</p>
     </div>
   );
 }
 
 function LogafitCaseStudy() {
-  const accent = '#2E86D4';
-  const accentLight = '#EAF4FF';
-  return <div className="cs">
+  return <div className="lf">
 
-    <div className="cs-meta-bar">
-      {[['Gdzie','Toruń, Poland'],['Co','Redesign istniejącej strony'],['Dlaczego','Projekt portfolio'],['Rola','Designer, Researcher'],['Kategoria','Health & Fitness'],['Kiedy','Styczeń – Wrzesień 2024']].map(([k,v]) =>
+    {/* Meta row */}
+    <div className="lf-meta">
+      {[['Where','Toruń, Poland'],['What','Redesign of an existing website'],['Why','Portfolio Project'],['Role','Designer, Researcher'],['Category','Health & Fitness'],['When','January – September 2024']].map(([k,v]) =>
         <div key={k}><span>{k}</span><strong>{v}</strong></div>)}
     </div>
 
     {/* Redesign strategy */}
-    <div className="cs-block cs-block--tinted">
-      <p className="cs-label">Redesign strategy</p>
-      <p className="cs-big-quote">The existing Logafit website struggled with poor navigation and responsiveness.</p>
-      <p className="cs-body">Our goal was to address these challenges by introducing a modern, user-centered approach.</p>
+    <div className="lf-section">
+      <p className="lf-eyebrow">Redesign strategy</p>
+      <p className="lf-quote">The existing Logafit website struggled with<br/>poor navigation and responsiveness.</p>
+      <p className="lf-quote">Our goal was to address these challenges<br/>by introducing a modern, user-centered approach.</p>
+      <p className="lf-sublabel">Objectives</p>
+      <div className="lf-objectives">
+        {[
+          ['Simplify navigation','Reduce and consolidate menu items so users find what they need faster.'],
+          ['Improve responsiveness','Redesign layouts to work fluidly on mobile and tablet devices.'],
+          ['Refresh visual identity','Modernise the UI to reflect Logafit\'s active, aquatic brand.'],
+          ['Boost accessibility','Achieve WCAG 2.0 AA contrast compliance across all UI elements.'],
+        ].map(([t,d]) => <div key={t} className="lf-objective"><strong>{t}</strong><p>{d}</p></div>)}
+      </div>
     </div>
 
     {/* User research */}
-    <div className="cs-block">
-      <p className="cs-label">User research</p>
-      <p className="cs-body">To better understand user pain points, I conducted a review of the website's structure and user feedback. The key findings highlighted difficulties with navigation and outdated content.</p>
-      <p className="cs-sublabel">Summary highlights</p>
-      <div className="cs-donuts">
-        <DonutChart pct={59} label="struggled with navigation" color={accent} />
-        <DonutChart pct={28} label="found outdated content problematic" color="#1F9072" />
-        <DonutChart pct={13} label="mentioned issues with responsiveness" color="#B85C28" />
+    <div className="lf-section">
+      <p className="lf-eyebrow">User research</p>
+      <p className="lf-body">To better understand user pain points, I conducted a review of the website's structure and user feedback. The key findings highlighted difficulties with navigation and outdated content.</p>
+      <p className="lf-sublabel">Summary highlights</p>
+      <p className="lf-body">The research highlighted three main problem areas affecting user experience, as shown below.</p>
+      <div className="lf-donuts">
+        <Donut pct={59} label="struggled with navigation" />
+        <Donut pct={28} label="found outdated content problematic" />
+        <Donut pct={13} label="mentioned issues with responsiveness" />
       </div>
-      <p className="cs-sublabel" style={{marginTop:28}}>Notable comments</p>
-      <div className="cs-bubbles">
-        <div className="cs-bubble">"I can't find the schedule or any information about classes on this website."</div>
-        <div className="cs-bubble cs-bubble--right">"The website seems outdated, but the links are just broken."</div>
+      <p className="lf-sublabel">Notable comments</p>
+      <div className="lf-bubbles">
+        <div className="lf-bubble lf-bubble--l">"I can't find the schedule or any information about classes on this website."</div>
+        <div className="lf-bubble lf-bubble--r">"The website seems outdated, but the links are just broken."</div>
       </div>
-      <p className="cs-sublabel" style={{marginTop:28}}>Key findings</p>
-      <div className="cs-findings">
-        <div className="cs-finding">
-          <div className="cs-finding-icon">🧭</div>
+      <p className="lf-sublabel">Key findings</p>
+      <div className="lf-findings">
+        <div className="lf-finding">
+          <div className="lf-finding-icon">🧭</div>
           <strong>Navigation confusion</strong>
-          <p>Users frequently had difficulty finding activities, schedules and class information due to an unclear menu structure.</p>
+          <p>Users frequently had difficulty finding the location of activities/classes, buttons and schedules.</p>
         </div>
-        <div className="cs-finding">
-          <div className="cs-finding-icon">📱</div>
+        <div className="lf-finding">
+          <div className="lf-finding-icon">📱</div>
           <strong>Mobile usability issues</strong>
           <p>Poor mobile UX was highlighted as a significant barrier to accessing information on the go.</p>
         </div>
-        <div className="cs-finding">
-          <div className="cs-finding-icon">📋</div>
+        <div className="lf-finding">
+          <div className="lf-finding-icon">📋</div>
           <strong>Outdated content</strong>
-          <p>The website had a lot of outdated content — links and images were broken, driving users away.</p>
+          <p>The website had a lot of outdated content — links and images were broken.</p>
         </div>
       </div>
     </div>
 
     {/* Architecture improvements */}
-    <div className="cs-block">
-      <p className="cs-label">Architecture improvements</p>
-      <p className="cs-body">I consolidated similar sections, reduced the number of main categories, and made navigation more intuitive.</p>
-      <p className="cs-sublabel">Changes made</p>
-      <div className="cs-arch">
-        <div className="cs-arch-col">
-          <div className="cs-arch-head cs-arch-head--before">Before</div>
-          <div className="cs-arch-tree">
-            {['Strona główna','O nas','Zajęcia','Grafik','Basen','Kontakt','Aktualności','Galeria'].map(item =>
-              <div key={item} className="cs-arch-item cs-arch-item--before">{item}</div>)}
-          </div>
+    <div className="lf-section">
+      <p className="lf-eyebrow">Architecture improvements</p>
+      <p className="lf-body">I consolidated similar sections, reduced the number of main categories, and made navigation more intuitive.</p>
+      <p className="lf-sublabel">Changes made</p>
+      <div className="lf-arch">
+        <div className="lf-arch-col">
+          <div className="lf-arch-label lf-arch-label--before">Before</div>
+          {['Strona główna','O nas','Zajęcia','Grafik','Basen','Kontakt','Aktualności','Galeria'].map(i =>
+            <div key={i} className="lf-arch-item lf-arch-item--before">{i}</div>)}
         </div>
-        <div className="cs-arch-arrow">→</div>
-        <div className="cs-arch-col">
-          <div className="cs-arch-head cs-arch-head--after">After</div>
-          <div className="cs-arch-tree">
-            {['Strona główna','Zajęcia & Grafik','O nas','Kontakt'].map(item =>
-              <div key={item} className="cs-arch-item cs-arch-item--after">{item}</div>)}
-          </div>
-          <ul className="cs-arch-notes">
-            <li>Grupowanie podobnych elementów redukuje cognitive load</li>
-            <li>Wyróżnienie najczęściej używanych linków</li>
+        <div className="lf-arch-arrow">→</div>
+        <div className="lf-arch-col">
+          <div className="lf-arch-label lf-arch-label--after">After</div>
+          {['Strona główna','Zajęcia & Grafik','O nas','Kontakt'].map(i =>
+            <div key={i} className="lf-arch-item lf-arch-item--after">{i}</div>)}
+          <ul className="lf-arch-notes">
+            <li>Grouping similar items to reduce cognitive load</li>
+            <li>Highlighted frequently accessible links</li>
           </ul>
         </div>
       </div>
     </div>
 
     {/* High-fidelity UI */}
-    <div className="cs-block cs-block--tinted">
-      <p className="cs-label">High-fidelity UI</p>
-      <p className="cs-body">The high-fidelity design for Logafit focuses on creating a visually engaging and user-friendly interface that reflects the brand's identity and encourages user interaction.</p>
-      <div className="cs-hifi-points">
-        <div className="cs-hifi-point">
+    <div className="lf-section lf-section--mint">
+      <p className="lf-eyebrow">High-fidelity UI</p>
+      <p className="lf-body">The high-fidelity design for Logafit focuses on creating a visually engaging and user-friendly interface that reflects the brand's identity and encourages user interaction.</p>
+      <div className="lf-hifi">
+        <div className="lf-hifi-point">
           <strong>A prominent call-to-action</strong>
-          <p>A large, clear message "Sign up for our activities", positioned at the center to direct users to a key section.</p>
+          <p>A large, clear message "Sign up for our activities", positioned at the centre to direct users to a key section.</p>
         </div>
-        <div className="cs-hifi-point">
+        <div className="lf-hifi-point">
           <strong>Brand elements</strong>
-          <p>Subtle, sharp graphics integrated throughout the section to visually connect with Logafit's aquatic theme and make the design more recognizable.</p>
+          <p>Subtle, sharp graphics integrated throughout the section to visually connect with Logafit's aquatic theme and make the design more recognisable.</p>
         </div>
-        <div className="cs-hifi-point">
+        <div className="lf-hifi-point">
           <strong>Macro elements</strong>
           <p>Subtle, sharp graphics integrated throughout the hero section to visually identify with Logafit's theme and make the design more personalized.</p>
         </div>
       </div>
-      <p className="cs-sublabel" style={{marginTop:28}}>Responsive design</p>
-      <p className="cs-body">A mobile-first approach was implemented to ensure usability on smaller screens.</p>
-      <div className="cs-breakpoints">
-        <div className="cs-breakpoint">
-          <div className="cs-bp-device cs-bp-device--mobile"></div>
-          <strong>390px</strong>
-          <span>Mobile devices</span>
+      <p className="lf-sublabel" style={{marginTop:28}}>Responsive design</p>
+      <p className="lf-body" style={{fontWeight:700,fontSize:18}}>A mobile-first approach was implemented to ensure usability on smaller screens.</p>
+      <p className="lf-body">Three breakpoints allowed the design to adapt seamlessly to different devices, ensuring a consistent user experience.</p>
+      <div className="lf-devices">
+        <div className="lf-device">
+          <div className="lf-device-frame lf-device-frame--mobile"></div>
+          <strong>390px</strong><span>Mobile devices</span>
         </div>
-        <div className="cs-breakpoint">
-          <div className="cs-bp-device cs-bp-device--tablet"></div>
-          <strong>744px</strong>
-          <span>Tablets</span>
+        <div className="lf-device">
+          <div className="lf-device-frame lf-device-frame--tablet"></div>
+          <strong>744px</strong><span>Tablets</span>
         </div>
-        <div className="cs-breakpoint">
-          <div className="cs-bp-device cs-bp-device--desktop"></div>
-          <strong>1280px</strong>
-          <span>Larger screens</span>
+        <div className="lf-device">
+          <div className="lf-device-frame lf-device-frame--desktop"></div>
+          <strong>1280px</strong><span>Larger screens</span>
         </div>
       </div>
     </div>
 
     {/* Accessibility */}
-    <div className="cs-block">
-      <p className="cs-label">Accessibility evaluation</p>
-      <p className="cs-body">Evaluated to meet WCAG 2.0 Accessibility standards. Each UI element was carefully checked using the Contrast Checker by DIAMANT to ensure a consistent visual experience.</p>
-      <div className="cs-a11y">
-        {[['Gradient buttons','AA'],['Gradient cards','AA'],['Text on colors','AA']].map(([name, rating]) =>
-          <div key={name} className="cs-a11y-item">
-            <div className="cs-a11y-swatch" style={{background: `linear-gradient(135deg, ${accent}, #1a5fa0)`}}></div>
-            <div>
-              <strong>{name}</strong>
-              <span className="cs-a11y-badge">{rating}</span>
-            </div>
+    <div className="lf-section">
+      <p className="lf-eyebrow">Accessibility evaluation</p>
+      <p className="lf-body">Evaluated to meet WCAG 2.0 Accessibility standards. Each UI element was carefully checked using the Contrast Checker by DIAMANT to ensure a consistent visual experience.</p>
+      <div className="lf-a11y">
+        {[
+          ['Gradient buttons', `linear-gradient(135deg,${T},#1a7a52)`],
+          ['Gradient cards',   `linear-gradient(135deg,#2a9d7a,${T})`],
+          ['Text on colors',   `linear-gradient(135deg,#1a5f3c,#2e8f6a)`],
+        ].map(([name,bg]) =>
+          <div key={name} className="lf-a11y-row">
+            <div className="lf-a11y-swatch" style={{background:bg}}></div>
+            <span className="lf-a11y-name">{name}</span>
+            <span className="lf-aa">AA</span>
           </div>)}
       </div>
     </div>
 
-    {/* Outcome */}
-    <div className="cs-block">
-      <p className="cs-label">Outcome &amp; metrics</p>
-      <div className="cs-before-after">
-        <div className="cs-before">
-          <p className="cs-ba-label">Before</p>
-          <p>The original Logafit website lacked a clear structure and struggled with user navigation. As a result, users faced difficulties in finding key information, such as swimming classes or contact details.</p>
-        </div>
-        <div className="cs-after">
-          <p className="cs-ba-label">After</p>
-          <p>The redesigned Logafit website introduces a modern, user-centered approach. The new design provides a more engaging and streamlined experience, improving user satisfaction and retention.</p>
-        </div>
-      </div>
-      <p className="cs-sublabel" style={{marginTop:28}}>Highlights of the redesign</p>
-      <div className="cs-highlights">
-        <div className="cs-highlight">
-          <div className="cs-highlight-icon">🧭</div>
+    {/* Outcome & metrics */}
+    <div className="lf-section">
+      <p className="lf-eyebrow">Outcome &amp; metrics</p>
+      <p className="lf-body">The original Logafit website lacked a clear structure and struggled with user navigation.</p>
+      <p className="lf-body">As a result, users faced difficulties in finding key information, such as swimming classes or contact details.</p>
+      <p className="lf-outcome-headline">The redesigned Logafit website introduces a modern, user-centered approach.</p>
+      <p className="lf-body">The new design provides a more engaging and streamlined experience, improving user satisfaction and retention.</p>
+      <p className="lf-sublabel" style={{marginTop:20}}>Highlights of the redesign</p>
+      <div className="lf-highlights">
+        <div className="lf-highlight">
+          <div className="lf-highlight-icon">🧭</div>
           <strong>Enhanced Navigation</strong>
-          <p>The simplification of navigation has improved the overall user experience significantly.</p>
+          <p>The simplification of navigation has improved the overall user experience.</p>
         </div>
-        <div className="cs-highlight">
-          <div className="cs-highlight-icon">⚡</div>
+        <div className="lf-highlight">
+          <div className="lf-highlight-icon">⚡</div>
           <strong>Increased user satisfaction</strong>
-          <p>A 30% reduction in time to find information thanks to clear headings and organized sections.</p>
+          <p>The content redesign has led to a 30% reduction in time to find information.</p>
         </div>
-        <div className="cs-highlight">
-          <div className="cs-highlight-icon">💬</div>
+        <div className="lf-highlight">
+          <div className="lf-highlight-icon">💬</div>
           <strong>Positive Feedback</strong>
           <p>85% of tested users provided positive feedback on the new navigation structure.</p>
         </div>
@@ -335,24 +338,25 @@ function LogafitCaseStudy() {
     </div>
 
     {/* Lessons learned */}
-    <div className="cs-block cs-block--dark">
-      <p className="cs-label cs-label--light">Lessons learned</p>
-      <p className="cs-big-quote cs-big-quote--light">This project was an invaluable experience that reinforced my understanding of user-centered design principles.</p>
-      <div className="cs-lessons">
-        <div className="cs-lesson">
+    <div className="lf-section lf-section--dark">
+      <p className="lf-eyebrow lf-eyebrow--light">Lessons learned</p>
+      <p className="lf-quote lf-quote--light">This project was an invaluable experience that reinforced my understanding of user-centered design principles.</p>
+      <p className="lf-sublabel lf-sublabel--light">Here's what I learned:</p>
+      <div className="lf-lessons">
+        <div className="lf-lesson">
           <strong>Working with the developer</strong>
           <p>Maintaining clear communication and managing design details was key to a smooth handoff.</p>
         </div>
-        <div className="cs-lesson">
-          <strong>The importance of user feedback</strong>
-          <p>Using real feedback to design a product that truly resonated with users made the difference.</p>
+        <div className="lf-lesson">
+          <strong>The Importance of User Feedback</strong>
+          <p>Using real feedback to design a product that truly resonated with users.</p>
         </div>
-        <div className="cs-lesson">
-          <strong>The value of simplification</strong>
-          <p>Simplifying the navigation and content structure helped create a more intuitive product.</p>
+        <div className="lf-lesson">
+          <strong>The Value of Simplification</strong>
+          <p>Simplifying navigation and content structure helped create a more intuitive product.</p>
         </div>
-        <div className="cs-lesson">
-          <strong>Feedback is a powerful tool</strong>
+        <div className="lf-lesson">
+          <strong>Feedback is a Powerful Tool</strong>
           <p>An ongoing feedback loop during design identifies problems early before they become costly.</p>
         </div>
       </div>
