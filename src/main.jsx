@@ -166,7 +166,14 @@ function ProjectDetail({ project }) {
       <div className="case-text expanded">
         {project.story.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
         <div className="tags wide">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-        <a className="btn primary" href={project.pdf}>Otwórz pełny PDF</a>
+      </div>
+      <div className="pdf-section">
+        <div className="pdf-header">
+          <span className="pdf-label">Case study PDF</span>
+          <a className="text-link" href={project.pdf} target="_blank" rel="noopener noreferrer">Otwórz w nowej karcie ↗</a>
+        </div>
+        <iframe className="pdf-embed" src={project.pdf} title={`Case study ${project.title}`} />
+        <p className="pdf-fallback">Nie widzisz PDF? <a href={project.pdf} target="_blank" rel="noopener noreferrer">Pobierz lub otwórz bezpośrednio</a>.</p>
       </div>
     </section>
   </main>;
