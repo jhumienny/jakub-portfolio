@@ -130,10 +130,10 @@ function Hero() {
 }
 
 function ProjectCard({ project, index }) {
-  return <article className="project-card" id={project.id} style={{'--accent': project.accent, '--card-bg': project.cardBg, '--card-border': project.cardBorder}}>
-    <a className="project-thumb" href={`#project-${project.id}`} aria-label={`Otwórz case study ${project.title}`}>
+  return <a className="project-card" href={`#project-${project.id}`} style={{'--accent': project.accent, '--card-bg': project.cardBg, '--card-border': project.cardBorder}} aria-label={`Otwórz case study ${project.title}`}>
+    <div className="project-thumb">
       <img src={project.image} alt={`Miniatura case study ${project.title}`} loading="lazy" />
-    </a>
+    </div>
     <div className="project-content">
       <div className="project-topline">
         <span className="project-num">0{index + 1}</span>
@@ -142,9 +142,9 @@ function ProjectCard({ project, index }) {
       <h3>{project.title}</h3>
       <p className="project-teaser">{project.subtitle}</p>
       <div className="tags">{project.tags.slice(0, 3).map(tag => <span key={tag}>{tag}</span>)}</div>
-      <a className="card-cta" href={`#project-${project.id}`}>Zobacz case study →</a>
+      <span className="card-cta">Zobacz case study →</span>
     </div>
-  </article>;
+  </a>;
 }
 
 function ProjectDetail({ project }) {
@@ -222,6 +222,9 @@ function HomePage() {
 
 function App() {
   const selectedProject = useHashProject();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [selectedProject?.id]);
   return <>
     <Nav />
     {selectedProject ? <ProjectDetail project={selectedProject} /> : <HomePage />}
