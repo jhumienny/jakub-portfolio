@@ -150,13 +150,117 @@ function ProjectCard({ project, index }) {
   </a>;
 }
 
-function CaseStudyViewer({ pages, pdf }) {
-  return <div className="pdf-viewer">
-    {pages.map((src, i) => <img key={i} src={src} alt={`Strona case study ${i + 1}`} className="pdf-page" loading="lazy" />)}
+function LogafitCaseStudy() {
+  return <div className="cs">
+    <div className="cs-meta-bar">
+      <div><span>Gdzie</span><strong>Toruń, Poland</strong></div>
+      <div><span>Co</span><strong>Redesign strony</strong></div>
+      <div><span>Kiedy</span><strong>Styczeń – Wrzesień 2024</strong></div>
+      <div><span>Rola</span><strong>Designer, Researcher</strong></div>
+      <div><span>Kategoria</span><strong>Health &amp; Fitness</strong></div>
+    </div>
+
+    <section className="cs-section">
+      <p className="cs-eyebrow">Strategia redesignu</p>
+      <blockquote className="cs-quote">Istniejąca strona Logafit zmagała się z trudną nawigacją i brakiem responsywności.</blockquote>
+      <p>Celem było rozwiązanie tych problemów poprzez wprowadzenie nowoczesnego, skoncentrowanego na użytkowniku podejścia do architektury informacji i warstwy wizualnej.</p>
+    </section>
+
+    <section className="cs-section">
+      <p className="cs-eyebrow">User research</p>
+      <p>Aby lepiej zrozumieć problemy użytkowników, przeprowadziłem analizę struktury strony i zebranych opinii. Kluczowe wnioski wskazały trudności z nawigacją, przestarzałą treść oraz brak responsywności.</p>
+      <div className="cs-stats">
+        <div className="cs-stat"><strong>59%</strong><span>użytkowników miało problemy z nawigacją</span></div>
+        <div className="cs-stat"><strong>28%</strong><span>wskazywało przestarzałą treść jako problem</span></div>
+        <div className="cs-stat"><strong>13%</strong><span>zgłaszało problemy z responsywnością</span></div>
+      </div>
+      <div className="cs-findings">
+        <div className="cs-finding">
+          <strong>Chaos nawigacyjny</strong>
+          <p>Zbyt wiele zakładek i nielogiczna struktura utrudniały znalezienie informacji o zajęciach i harmonogramach.</p>
+        </div>
+        <div className="cs-finding">
+          <strong>Problemy mobilne</strong>
+          <p>Strona nie była przystosowana do urządzeń mobilnych, co utrudniało korzystanie z niej w biegu.</p>
+        </div>
+        <div className="cs-finding">
+          <strong>Przestarzała treść</strong>
+          <p>Nieaktualne informacje i grafiki zniechęcały użytkowników do dalszego korzystania ze strony.</p>
+        </div>
+      </div>
+    </section>
+
+    <section className="cs-section">
+      <p className="cs-eyebrow">Architektura informacji</p>
+      <p>Skonsolidowałem podobne sekcje, zmniejszyłem liczbę głównych kategorii nawigacji i nadałem priorytet treściom najczęściej poszukiwanym — harmonogramom zajęć, formularzom zapisu i kontaktowi. Zmiany sprawiły, że nawigacja stała się bardziej intuicyjna i przewidywalna.</p>
+    </section>
+
+    <section className="cs-section">
+      <p className="cs-eyebrow">High-fidelity UI</p>
+      <p>Projekt High-fidelity skupia się na wizualnie angażującym interfejsie, który odzwierciedla wodno-fitnessowy charakter marki i zachęca do interakcji.</p>
+      <ul className="cs-list">
+        <li><strong>Hero section</strong> — wyraźne CTA "Zapisz się na zajęcia" kierujące użytkowników do kluczowej akcji natychmiast po wejściu na stronę.</li>
+        <li><strong>Elementy marki</strong> — subtelna grafika nawiązująca do akwatycznego charakteru Logafit, spójna przez cały projekt.</li>
+        <li><strong>Responsywność</strong> — trzy breakpointy: 390px (mobile), 744px (tablet), 1280px (desktop).</li>
+      </ul>
+    </section>
+
+    <section className="cs-section">
+      <p className="cs-eyebrow">Dostępność (WCAG 2.0)</p>
+      <p>Projekt oceniono pod kątem standardów dostępności WCAG 2.0. Kontrast każdego elementu sprawdzono narzędziem Contrast Checker by DIAMAT, uzyskując ocenę AA na wszystkich sprawdzanych kombinacjach.</p>
+      <div className="cs-badges">
+        <span className="cs-badge">AA — Gradient buttons</span>
+        <span className="cs-badge">AA — Gradient cards</span>
+        <span className="cs-badge">AA — Text on colors</span>
+      </div>
+    </section>
+
+    <section className="cs-section cs-section--highlight">
+      <p className="cs-eyebrow">Wyniki</p>
+      <h3>Przeprojektowana strona Logafit wprowadza nowoczesne, skoncentrowane na użytkowniku podejście.</h3>
+      <div className="cs-outcomes">
+        <div>
+          <strong>Lepsza nawigacja</strong>
+          <p>Uproszczenie struktury i zmniejszenie liczby kategorii znacznie poprawiło ogólne doświadczenie użytkownika.</p>
+        </div>
+        <div>
+          <strong>30% szybciej</strong>
+          <p>Redukcja czasu potrzebnego do znalezienia kluczowych informacji dzięki wyraźnym nagłówkom i zorganizowanym sekcjom.</p>
+        </div>
+        <div>
+          <strong>85% pozytywnych opinii</strong>
+          <p>Testowani użytkownicy pozytywnie ocenili nową strukturę nawigacji i czytelność strony.</p>
+        </div>
+      </div>
+    </section>
+
+    <section className="cs-section">
+      <p className="cs-eyebrow">Wnioski</p>
+      <blockquote className="cs-quote">Ten projekt wzmocnił moje rozumienie zasad projektowania skoncentrowanego na użytkowniku i pracy z realnym feedbackiem.</blockquote>
+      <div className="cs-lessons">
+        <div>
+          <strong>Wartość uproszczenia</strong>
+          <p>Redukcja liczby opcji i kategorii tworzy bardziej intuicyjny i mniej przytłaczający produkt.</p>
+        </div>
+        <div>
+          <strong>Feedback jako narzędzie</strong>
+          <p>Ciągła pętla feedbacku podczas procesu projektowania pomaga wcześnie identyfikować problemy, zanim staną się kosztowne.</p>
+        </div>
+        <div>
+          <strong>Praca z developerem</strong>
+          <p>Jasna komunikacja i precyzyjne specyfikacje projektowe to fundament sprawnej współpracy.</p>
+        </div>
+        <div>
+          <strong>Użytkownicy mają zawsze rację</strong>
+          <p>Projektowanie oparte na realnych danych, nie założeniach, prowadzi do rozwiązań, które naprawdę rezonują z odbiorcami.</p>
+        </div>
+      </div>
+    </section>
   </div>;
 }
 
 function ProjectDetail({ project }) {
+  const hasWebCaseStudy = project.id === 'logafit';
   return <main className="detail-page" style={{'--accent': project.accent}}>
     <a className="back-link" href="./#projects">← Wróć do projektów</a>
     <section className="detail-hero">
@@ -167,21 +271,20 @@ function ProjectDetail({ project }) {
         <div className="meta-row detail-meta"><span>{project.year}</span><span>{project.role}</span><span>{project.location}</span></div>
       </div>
       <div className="detail-preview">
-        <img src={project.image} alt={`Podgląd pierwszej strony case study ${project.title}`} />
+        <img src={project.image} alt={`Podgląd case study ${project.title}`} />
       </div>
     </section>
     <section className="detail-body">
       <div className="stats">{project.stats.map(([num, label]) => <div className="stat" key={num + label}><strong>{num}</strong><span>{label}</span></div>)}</div>
-      <div className="case-text expanded">
-        {project.story.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
-        <div className="tags wide">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-      </div>
       <div className="pdf-section">
         <div className="pdf-header">
           <span className="pdf-label">Case study</span>
           <a className="text-link" href={project.pdf} target="_blank" rel="noopener noreferrer">Pobierz PDF ↓</a>
         </div>
-        <CaseStudyViewer pages={project.pages} pdf={project.pdf} />
+        {hasWebCaseStudy
+          ? <LogafitCaseStudy />
+          : <div className="pdf-viewer">{project.pages.map((src, i) => <img key={i} src={src} alt={`Strona case study ${i + 1}`} className="pdf-page" loading="lazy" />)}</div>
+        }
       </div>
     </section>
   </main>;
