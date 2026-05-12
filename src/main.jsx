@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -6,13 +6,14 @@ const projects = [
   {
     id: 'logafit',
     eyebrow: 'Website redesign · Health & Fitness',
+    category: 'Website redesign',
     title: 'Logafit',
     subtitle: 'Revitalizing wellness — modernizacja strony fitness z naciskiem na prostszą nawigację, responsywność i dostępność.',
     year: '2024',
     role: 'Designer, Researcher',
     location: 'Toruń, Poland',
     tags: ['Redesign strategy', 'User research', 'Information architecture', 'Responsive UI', 'Accessibility'],
-    accent: '#23B8D4',
+    accent: '#58CFA5',
     image: 'assets/logafit-case.png',
     pdf: 'assets/logafit-case-study.pdf',
     stats: [
@@ -29,13 +30,14 @@ const projects = [
   {
     id: 'calmflow',
     eyebrow: 'Native iOS app · Mental wellbeing',
+    category: 'Native iOS app',
     title: 'CalmFlow',
     subtitle: 'Finding Balance and Inner Peace — aplikacja wspierająca zarządzanie zdrowiem psychicznym przez medytację, jogę, ćwiczenia i dziennik.',
     year: '2023',
     role: 'Designer, Researcher',
     location: 'Toruń, Poland',
     tags: ['Market research', 'Competitive analysis', 'User survey', 'Proto-personas', 'Flow diagrams', 'High-fidelity UI', 'Accessibility'],
-    accent: '#8B7CF6',
+    accent: '#A7D86D',
     image: 'assets/calmflow-case.png',
     pdf: 'assets/calmflow-case-study.pdf',
     stats: [
@@ -52,13 +54,14 @@ const projects = [
   {
     id: 'cuffka',
     eyebrow: 'Native iOS app · Food & Drink',
+    category: 'Native iOS app',
     title: 'Cuffka',
     subtitle: 'Your Ultimate Café Companion — aplikacja pomagająca odkrywać kawiarnie, promocje, menu i program lojalnościowy w jednym miejscu.',
     year: '2022–2023',
     role: 'Designer, Researcher',
     location: 'Elbląg, Poland',
     tags: ['Market research', 'Competitive analysis', 'Wireframes', 'High-fidelity UI', 'Prototype', 'Accessibility'],
-    accent: '#C9825D',
+    accent: '#7DD8B3',
     image: 'assets/cuffka-case.png',
     pdf: 'assets/cuffka-case-study.pdf',
     stats: [
@@ -74,19 +77,32 @@ const projects = [
   }
 ];
 
+function useHashProject() {
+  const [hash, setHash] = useState(window.location.hash);
+  useEffect(() => {
+    const onHash = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+  const id = hash.startsWith('#project-') ? hash.replace('#project-', '') : null;
+  return projects.find(project => project.id === id) || null;
+}
+
 function Nav() {
   return <header className="nav">
-    <a className="brand" href="#top" aria-label="Jakub Sobiecki home">JS</a>
+    <a className="brand" href="./#top" aria-label="Jakub Sobiecki home">JS</a>
     <nav aria-label="Główna nawigacja">
-      <a href="#projects">Projekty</a>
-      <a href="#about">O mnie</a>
-      <a href="#contact">Kontakt</a>
+      <a href="./#projects">Projekty</a>
+      <a href="./#about">O mnie</a>
+      <a href="./#contact">Kontakt</a>
     </nav>
   </header>;
 }
 
 function Hero() {
   return <section className="hero" id="top">
+    <div className="shape shape-a" />
+    <div className="shape shape-b" />
     <div className="hero-copy">
       <p className="kicker">Junior UX/UI Designer</p>
       <h1>Projektuję produkty cyfrowe, które są proste, dostępne i przyjemne w użyciu.</h1>
@@ -109,56 +125,59 @@ function Hero() {
 
 function ProjectCard({ project, index }) {
   return <article className="project-card" id={project.id} style={{'--accent': project.accent}}>
-    <div className="project-index">0{index + 1}</div>
+    <a className="project-thumb" href={`#project-${project.id}`} aria-label={`Otwórz case study ${project.title}`}>
+      <img src={project.image} alt={`Miniatura case study ${project.title}`} loading="lazy" />
+      <span className="thumb-label">Preview PDF</span>
+    </a>
     <div className="project-content">
-      <p className="kicker">{project.eyebrow}</p>
+      <div className="project-topline"><span>0{index + 1}</span><span>{project.category}</span></div>
       <h3>{project.title}</h3>
       <p className="project-subtitle">{project.subtitle}</p>
       <div className="meta-row">
         <span>{project.year}</span><span>{project.role}</span><span>{project.location}</span>
       </div>
-      <div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+      <div className="tags">{project.tags.slice(0, 5).map(tag => <span key={tag}>{tag}</span>)}</div>
       <div className="card-actions">
-        <a className="text-link" href={`#case-${project.id}`}>Czytaj case study</a>
-        {project.pdf && <a className="text-link muted" href={project.pdf}>PDF</a>}
+        <a className="btn small primary" href={`#project-${project.id}`}>Zobacz case study</a>
+        <a className="text-link muted" href={project.pdf}>PDF</a>
       </div>
     </div>
-    <ProjectVisual project={project} compact />
   </article>;
 }
 
-function ProjectVisual({ project, compact = false }) {
-  if (project.image) {
-    return <div className={`project-visual ${compact ? 'compact' : ''}`}>
-      <img src={project.image} alt={`Podgląd case study ${project.title}`} loading="lazy" />
-    </div>;
-  }
-  return <div className={`project-visual generated ${compact ? 'compact' : ''}`} aria-label="Wizualizacja CalmFlow">
-    <div className="phone">
-      <div className="phone-top" />
-      <div className="breath-circle"><span>4 · 7 · 8</span></div>
-      <h4>Evening reset</h4>
-      <p>3 min breathing session</p>
-      <div className="calm-bars"><i /><i /><i /></div>
-    </div>
-  </div>;
+function ProjectDetail({ project }) {
+  return <main className="detail-page" style={{'--accent': project.accent}}>
+    <a className="back-link" href="./#projects">← Wróć do projektów</a>
+    <section className="detail-hero">
+      <div>
+        <p className="kicker">Case study</p>
+        <h1>{project.title}</h1>
+        <p className="lead">{project.subtitle}</p>
+        <div className="meta-row detail-meta"><span>{project.year}</span><span>{project.role}</span><span>{project.location}</span></div>
+      </div>
+      <div className="detail-preview">
+        <img src={project.image} alt={`Podgląd pierwszej strony case study ${project.title}`} />
+      </div>
+    </section>
+    <section className="detail-body">
+      <div className="stats">{project.stats.map(([num, label]) => <div className="stat" key={num + label}><strong>{num}</strong><span>{label}</span></div>)}</div>
+      <div className="case-text expanded">
+        {project.story.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+        <div className="tags wide">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+        <a className="btn primary" href={project.pdf}>Otwórz pełny PDF</a>
+      </div>
+    </section>
+  </main>;
 }
 
-function CaseStudy({ project }) {
-  return <section className="case" id={`case-${project.id}`} style={{'--accent': project.accent}}>
-    <div className="case-head">
-      <p className="kicker">Case study</p>
-      <h2>{project.title}</h2>
-      <p>{project.subtitle}</p>
+function Projects() {
+  return <section className="projects" id="projects">
+    <div className="section-head">
+      <p className="kicker">Moje portfolio</p>
+      <h2>Wybrane projekty</h2>
+      <p>Trzy case studies w formie krótkich kafli. Pełny proces i PDF są dostępne po wejściu w konkretny projekt.</p>
     </div>
-    <div className="stats">{project.stats.map(([num, label]) => <div className="stat" key={num + label}><strong>{num}</strong><span>{label}</span></div>)}</div>
-    <div className="case-grid">
-      <div className="case-text">
-        {project.story.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
-        {project.pdf && <a className="btn ghost small" href={project.pdf}>Otwórz pełny PDF</a>}
-      </div>
-      <ProjectVisual project={project} />
-    </div>
+    <div className="project-list">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.id} />)}</div>
   </section>;
 }
 
@@ -188,22 +207,22 @@ function Contact() {
   </footer>;
 }
 
-function App() {
+function HomePage() {
   return <>
-    <Nav />
     <main>
       <Hero />
-      <section className="projects" id="projects">
-        <div className="section-head">
-          <p className="kicker">Moje portfolio</p>
-          <h2>Wybrane projekty</h2>
-        </div>
-        <div className="project-list">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.id} />)}</div>
-      </section>
-      {projects.map(project => <CaseStudy project={project} key={project.id} />)}
+      <Projects />
       <About />
     </main>
     <Contact />
+  </>;
+}
+
+function App() {
+  const selectedProject = useHashProject();
+  return <>
+    <Nav />
+    {selectedProject ? <ProjectDetail project={selectedProject} /> : <HomePage />}
   </>;
 }
 
