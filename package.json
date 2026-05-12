@@ -1,1 +1,1 @@
-{"scripts":{"dev":"vite --host 127.0.0.1","build":"vite build","preview":"vite preview --host 127.0.0.1"},"dependencies":{"@vitejs/plugin-react":"latest","puppeteer-core":"^24.43.1","react":"latest","react-dom":"latest","typescript":"latest","vite":"latest"}}
+{"scripts":{"dev":"vite --host 127.0.0.1","build":"vite build","preview":"vite preview --host 127.0.0.1"},"dependencies":{"@vitejs/plugin-react":"latest","pdfjs-dist":"^5.7.284","puppeteer-core":"^24.43.1","react":"latest","react-dom":"latest","typescript":"latest","vite":"latest"}}
