@@ -1,12 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import * as pdfjsLib from 'pdfjs-dist';
 import './styles.css';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).href;
 
 const projects = [
   {
@@ -24,6 +18,7 @@ const projects = [
     cardBorder: '#B3D4F5',
     image: 'assets/logafit-case.png',
     pdf: 'assets/logafit-case-study.pdf',
+    pages: ['assets/logafit-page-1.jpg'],
     stats: [
       ['59%', 'użytkowników miało problem z nawigacją'],
       ['30%', 'szybsze wykonanie zadań nawigacyjnych'],
@@ -50,6 +45,7 @@ const projects = [
     cardBorder: '#9ECFBC',
     image: 'assets/calmflow-case.png',
     pdf: 'assets/calmflow-case-study.pdf',
+    pages: ['assets/calmflow-page-1.jpg'],
     stats: [
       ['18', 'uczestników ankiety użytkowników'],
       ['$538M', 'prognozowana wartość rynku mental health do 2030'],
@@ -76,6 +72,7 @@ const projects = [
     cardBorder: '#F0C09A',
     image: 'assets/cuffka-case.png',
     pdf: 'assets/cuffka-case-study.pdf',
+    pages: ['assets/cuffka-page-1.jpg'],
     stats: [
       ['43', 'high-fidelity screens'],
       ['2', 'motywy: light i dark mode'],
@@ -153,41 +150,9 @@ function ProjectCard({ project, index }) {
   </a>;
 }
 
-function PDFPage({ pdf, pageNum }) {
-  const canvasRef = useRef(null);
-  useEffect(() => {
-    let cancelled = false;
-    pdf.getPage(pageNum).then(page => {
-      if (cancelled || !canvasRef.current) return;
-      const canvas = canvasRef.current;
-      const dpr = window.devicePixelRatio || 1;
-      const containerWidth = canvas.parentElement?.offsetWidth || 860;
-      const baseViewport = page.getViewport({ scale: 1 });
-      const scale = (containerWidth / baseViewport.width) * dpr;
-      const viewport = page.getViewport({ scale });
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
-      canvas.style.width = containerWidth + 'px';
-      canvas.style.height = Math.round(viewport.height / dpr) + 'px';
-      page.render({ canvasContext: canvas.getContext('2d'), viewport });
-    });
-    return () => { cancelled = true; };
-  }, [pdf, pageNum]);
-  return <canvas ref={canvasRef} className="pdf-page" />;
-}
-
-function PDFViewer({ src, fallbackHref }) {
-  const [state, setState] = useState({ pdf: null, numPages: 0, loading: true, error: null });
-  useEffect(() => {
-    setState({ pdf: null, numPages: 0, loading: true, error: null });
-    pdfjsLib.getDocument(src).promise
-      .then(doc => setState({ pdf: doc, numPages: doc.numPages, loading: false, error: null }))
-      .catch(err => setState({ pdf: null, numPages: 0, loading: false, error: err.message }));
-  }, [src]);
-  if (state.loading) return <div className="pdf-loading">Ładowanie case study…</div>;
-  if (state.error) return <div className="pdf-error">Nie udało się załadować. <a href={fallbackHref} target="_blank" rel="noopener noreferrer">Otwórz bezpośrednio →</a></div>;
+function CaseStudyViewer({ pages, pdf }) {
   return <div className="pdf-viewer">
-    {Array.from({ length: state.numPages }, (_, i) => <PDFPage key={i} pdf={state.pdf} pageNum={i + 1} />)}
+    {pages.map((src, i) => <img key={i} src={src} alt={`Strona case study ${i + 1}`} className="pdf-page" loading="lazy" />)}
   </div>;
 }
 
@@ -216,7 +181,7 @@ function ProjectDetail({ project }) {
           <span className="pdf-label">Case study</span>
           <a className="text-link" href={project.pdf} target="_blank" rel="noopener noreferrer">Pobierz PDF ↓</a>
         </div>
-        <PDFViewer src={project.pdf} fallbackHref={project.pdf} />
+        <CaseStudyViewer pages={project.pages} pdf={project.pdf} />
       </div>
     </section>
   </main>;
