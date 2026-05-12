@@ -13,7 +13,9 @@ const projects = [
     role: 'Designer, Researcher',
     location: 'Toruń, Poland',
     tags: ['Redesign strategy', 'User research', 'Information architecture', 'Responsive UI', 'Accessibility'],
-    accent: '#58CFA5',
+    accent: '#2E86D4',
+    cardBg: '#EAF4FF',
+    cardBorder: '#B3D4F5',
     image: 'assets/logafit-case.png',
     pdf: 'assets/logafit-case-study.pdf',
     stats: [
@@ -37,7 +39,9 @@ const projects = [
     role: 'Designer, Researcher',
     location: 'Toruń, Poland',
     tags: ['Market research', 'Competitive analysis', 'User survey', 'Proto-personas', 'Flow diagrams', 'High-fidelity UI', 'Accessibility'],
-    accent: '#A7D86D',
+    accent: '#1F9072',
+    cardBg: '#E5F4EF',
+    cardBorder: '#9ECFBC',
     image: 'assets/calmflow-case.png',
     pdf: 'assets/calmflow-case-study.pdf',
     stats: [
@@ -61,7 +65,9 @@ const projects = [
     role: 'Designer, Researcher',
     location: 'Elbląg, Poland',
     tags: ['Market research', 'Competitive analysis', 'Wireframes', 'High-fidelity UI', 'Prototype', 'Accessibility'],
-    accent: '#7DD8B3',
+    accent: '#B85C28',
+    cardBg: '#FFF2E8',
+    cardBorder: '#F0C09A',
     image: 'assets/cuffka-case.png',
     pdf: 'assets/cuffka-case-study.pdf',
     stats: [
@@ -124,23 +130,19 @@ function Hero() {
 }
 
 function ProjectCard({ project, index }) {
-  return <article className="project-card" id={project.id} style={{'--accent': project.accent}}>
+  return <article className="project-card" id={project.id} style={{'--accent': project.accent, '--card-bg': project.cardBg, '--card-border': project.cardBorder}}>
     <a className="project-thumb" href={`#project-${project.id}`} aria-label={`Otwórz case study ${project.title}`}>
       <img src={project.image} alt={`Miniatura case study ${project.title}`} loading="lazy" />
-      <span className="thumb-label">Preview PDF</span>
     </a>
     <div className="project-content">
-      <div className="project-topline"><span>0{index + 1}</span><span>{project.category}</span></div>
+      <div className="project-topline">
+        <span className="project-num">0{index + 1}</span>
+        <span className="project-cat">{project.category}</span>
+      </div>
       <h3>{project.title}</h3>
-      <p className="project-subtitle">{project.subtitle}</p>
-      <div className="meta-row">
-        <span>{project.year}</span><span>{project.role}</span><span>{project.location}</span>
-      </div>
-      <div className="tags">{project.tags.slice(0, 5).map(tag => <span key={tag}>{tag}</span>)}</div>
-      <div className="card-actions">
-        <a className="btn small primary" href={`#project-${project.id}`}>Zobacz case study</a>
-        <a className="text-link muted" href={project.pdf}>PDF</a>
-      </div>
+      <p className="project-teaser">{project.subtitle}</p>
+      <div className="tags">{project.tags.slice(0, 3).map(tag => <span key={tag}>{tag}</span>)}</div>
+      <a className="card-cta" href={`#project-${project.id}`}>Zobacz case study →</a>
     </div>
   </article>;
 }
