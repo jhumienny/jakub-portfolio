@@ -150,112 +150,214 @@ function ProjectCard({ project, index }) {
   </a>;
 }
 
+function DonutChart({ pct, label, color }) {
+  const r = 36, c = 2 * Math.PI * r;
+  const dash = (pct / 100) * c;
+  return (
+    <div className="cs-donut">
+      <svg viewBox="0 0 100 100" width="110" height="110">
+        <circle cx="50" cy="50" r={r} fill="none" stroke="#e8f0ec" strokeWidth="13" />
+        <circle cx="50" cy="50" r={r} fill="none" stroke={color} strokeWidth="13"
+          strokeDasharray={`${dash} ${c - dash}`} strokeDashoffset={c * 0.25} strokeLinecap="round" />
+        <text x="50" y="46" textAnchor="middle" fontSize="17" fontWeight="900" fill="#102019">{pct}%</text>
+      </svg>
+      <span>{label}</span>
+    </div>
+  );
+}
+
 function LogafitCaseStudy() {
+  const accent = '#2E86D4';
+  const accentLight = '#EAF4FF';
   return <div className="cs">
+
     <div className="cs-meta-bar">
-      <div><span>Gdzie</span><strong>Toruń, Poland</strong></div>
-      <div><span>Co</span><strong>Redesign strony</strong></div>
-      <div><span>Kiedy</span><strong>Styczeń – Wrzesień 2024</strong></div>
-      <div><span>Rola</span><strong>Designer, Researcher</strong></div>
-      <div><span>Kategoria</span><strong>Health &amp; Fitness</strong></div>
+      {[['Gdzie','Toruń, Poland'],['Co','Redesign istniejącej strony'],['Dlaczego','Projekt portfolio'],['Rola','Designer, Researcher'],['Kategoria','Health & Fitness'],['Kiedy','Styczeń – Wrzesień 2024']].map(([k,v]) =>
+        <div key={k}><span>{k}</span><strong>{v}</strong></div>)}
     </div>
 
-    <section className="cs-section">
-      <p className="cs-eyebrow">Strategia redesignu</p>
-      <blockquote className="cs-quote">Istniejąca strona Logafit zmagała się z trudną nawigacją i brakiem responsywności.</blockquote>
-      <p>Celem było rozwiązanie tych problemów poprzez wprowadzenie nowoczesnego, skoncentrowanego na użytkowniku podejścia do architektury informacji i warstwy wizualnej.</p>
-    </section>
+    {/* Redesign strategy */}
+    <div className="cs-block cs-block--tinted">
+      <p className="cs-label">Redesign strategy</p>
+      <p className="cs-big-quote">The existing Logafit website struggled with poor navigation and responsiveness.</p>
+      <p className="cs-body">Our goal was to address these challenges by introducing a modern, user-centered approach.</p>
+    </div>
 
-    <section className="cs-section">
-      <p className="cs-eyebrow">User research</p>
-      <p>Aby lepiej zrozumieć problemy użytkowników, przeprowadziłem analizę struktury strony i zebranych opinii. Kluczowe wnioski wskazały trudności z nawigacją, przestarzałą treść oraz brak responsywności.</p>
-      <div className="cs-stats">
-        <div className="cs-stat"><strong>59%</strong><span>użytkowników miało problemy z nawigacją</span></div>
-        <div className="cs-stat"><strong>28%</strong><span>wskazywało przestarzałą treść jako problem</span></div>
-        <div className="cs-stat"><strong>13%</strong><span>zgłaszało problemy z responsywnością</span></div>
+    {/* User research */}
+    <div className="cs-block">
+      <p className="cs-label">User research</p>
+      <p className="cs-body">To better understand user pain points, I conducted a review of the website's structure and user feedback. The key findings highlighted difficulties with navigation and outdated content.</p>
+      <p className="cs-sublabel">Summary highlights</p>
+      <div className="cs-donuts">
+        <DonutChart pct={59} label="struggled with navigation" color={accent} />
+        <DonutChart pct={28} label="found outdated content problematic" color="#1F9072" />
+        <DonutChart pct={13} label="mentioned issues with responsiveness" color="#B85C28" />
       </div>
+      <p className="cs-sublabel" style={{marginTop:28}}>Notable comments</p>
+      <div className="cs-bubbles">
+        <div className="cs-bubble">"I can't find the schedule or any information about classes on this website."</div>
+        <div className="cs-bubble cs-bubble--right">"The website seems outdated, but the links are just broken."</div>
+      </div>
+      <p className="cs-sublabel" style={{marginTop:28}}>Key findings</p>
       <div className="cs-findings">
         <div className="cs-finding">
-          <strong>Chaos nawigacyjny</strong>
-          <p>Zbyt wiele zakładek i nielogiczna struktura utrudniały znalezienie informacji o zajęciach i harmonogramach.</p>
+          <div className="cs-finding-icon">🧭</div>
+          <strong>Navigation confusion</strong>
+          <p>Users frequently had difficulty finding activities, schedules and class information due to an unclear menu structure.</p>
         </div>
         <div className="cs-finding">
-          <strong>Problemy mobilne</strong>
-          <p>Strona nie była przystosowana do urządzeń mobilnych, co utrudniało korzystanie z niej w biegu.</p>
+          <div className="cs-finding-icon">📱</div>
+          <strong>Mobile usability issues</strong>
+          <p>Poor mobile UX was highlighted as a significant barrier to accessing information on the go.</p>
         </div>
         <div className="cs-finding">
-          <strong>Przestarzała treść</strong>
-          <p>Nieaktualne informacje i grafiki zniechęcały użytkowników do dalszego korzystania ze strony.</p>
+          <div className="cs-finding-icon">📋</div>
+          <strong>Outdated content</strong>
+          <p>The website had a lot of outdated content — links and images were broken, driving users away.</p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section className="cs-section">
-      <p className="cs-eyebrow">Architektura informacji</p>
-      <p>Skonsolidowałem podobne sekcje, zmniejszyłem liczbę głównych kategorii nawigacji i nadałem priorytet treściom najczęściej poszukiwanym — harmonogramom zajęć, formularzom zapisu i kontaktowi. Zmiany sprawiły, że nawigacja stała się bardziej intuicyjna i przewidywalna.</p>
-    </section>
-
-    <section className="cs-section">
-      <p className="cs-eyebrow">High-fidelity UI</p>
-      <p>Projekt High-fidelity skupia się na wizualnie angażującym interfejsie, który odzwierciedla wodno-fitnessowy charakter marki i zachęca do interakcji.</p>
-      <ul className="cs-list">
-        <li><strong>Hero section</strong> — wyraźne CTA "Zapisz się na zajęcia" kierujące użytkowników do kluczowej akcji natychmiast po wejściu na stronę.</li>
-        <li><strong>Elementy marki</strong> — subtelna grafika nawiązująca do akwatycznego charakteru Logafit, spójna przez cały projekt.</li>
-        <li><strong>Responsywność</strong> — trzy breakpointy: 390px (mobile), 744px (tablet), 1280px (desktop).</li>
-      </ul>
-    </section>
-
-    <section className="cs-section">
-      <p className="cs-eyebrow">Dostępność (WCAG 2.0)</p>
-      <p>Projekt oceniono pod kątem standardów dostępności WCAG 2.0. Kontrast każdego elementu sprawdzono narzędziem Contrast Checker by DIAMAT, uzyskując ocenę AA na wszystkich sprawdzanych kombinacjach.</p>
-      <div className="cs-badges">
-        <span className="cs-badge">AA — Gradient buttons</span>
-        <span className="cs-badge">AA — Gradient cards</span>
-        <span className="cs-badge">AA — Text on colors</span>
-      </div>
-    </section>
-
-    <section className="cs-section cs-section--highlight">
-      <p className="cs-eyebrow">Wyniki</p>
-      <h3>Przeprojektowana strona Logafit wprowadza nowoczesne, skoncentrowane na użytkowniku podejście.</h3>
-      <div className="cs-outcomes">
-        <div>
-          <strong>Lepsza nawigacja</strong>
-          <p>Uproszczenie struktury i zmniejszenie liczby kategorii znacznie poprawiło ogólne doświadczenie użytkownika.</p>
+    {/* Architecture improvements */}
+    <div className="cs-block">
+      <p className="cs-label">Architecture improvements</p>
+      <p className="cs-body">I consolidated similar sections, reduced the number of main categories, and made navigation more intuitive.</p>
+      <p className="cs-sublabel">Changes made</p>
+      <div className="cs-arch">
+        <div className="cs-arch-col">
+          <div className="cs-arch-head cs-arch-head--before">Before</div>
+          <div className="cs-arch-tree">
+            {['Strona główna','O nas','Zajęcia','Grafik','Basen','Kontakt','Aktualności','Galeria'].map(item =>
+              <div key={item} className="cs-arch-item cs-arch-item--before">{item}</div>)}
+          </div>
         </div>
-        <div>
-          <strong>30% szybciej</strong>
-          <p>Redukcja czasu potrzebnego do znalezienia kluczowych informacji dzięki wyraźnym nagłówkom i zorganizowanym sekcjom.</p>
-        </div>
-        <div>
-          <strong>85% pozytywnych opinii</strong>
-          <p>Testowani użytkownicy pozytywnie ocenili nową strukturę nawigacji i czytelność strony.</p>
+        <div className="cs-arch-arrow">→</div>
+        <div className="cs-arch-col">
+          <div className="cs-arch-head cs-arch-head--after">After</div>
+          <div className="cs-arch-tree">
+            {['Strona główna','Zajęcia & Grafik','O nas','Kontakt'].map(item =>
+              <div key={item} className="cs-arch-item cs-arch-item--after">{item}</div>)}
+          </div>
+          <ul className="cs-arch-notes">
+            <li>Grupowanie podobnych elementów redukuje cognitive load</li>
+            <li>Wyróżnienie najczęściej używanych linków</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section className="cs-section">
-      <p className="cs-eyebrow">Wnioski</p>
-      <blockquote className="cs-quote">Ten projekt wzmocnił moje rozumienie zasad projektowania skoncentrowanego na użytkowniku i pracy z realnym feedbackiem.</blockquote>
+    {/* High-fidelity UI */}
+    <div className="cs-block cs-block--tinted">
+      <p className="cs-label">High-fidelity UI</p>
+      <p className="cs-body">The high-fidelity design for Logafit focuses on creating a visually engaging and user-friendly interface that reflects the brand's identity and encourages user interaction.</p>
+      <div className="cs-hifi-points">
+        <div className="cs-hifi-point">
+          <strong>A prominent call-to-action</strong>
+          <p>A large, clear message "Sign up for our activities", positioned at the center to direct users to a key section.</p>
+        </div>
+        <div className="cs-hifi-point">
+          <strong>Brand elements</strong>
+          <p>Subtle, sharp graphics integrated throughout the section to visually connect with Logafit's aquatic theme and make the design more recognizable.</p>
+        </div>
+        <div className="cs-hifi-point">
+          <strong>Macro elements</strong>
+          <p>Subtle, sharp graphics integrated throughout the hero section to visually identify with Logafit's theme and make the design more personalized.</p>
+        </div>
+      </div>
+      <p className="cs-sublabel" style={{marginTop:28}}>Responsive design</p>
+      <p className="cs-body">A mobile-first approach was implemented to ensure usability on smaller screens.</p>
+      <div className="cs-breakpoints">
+        <div className="cs-breakpoint">
+          <div className="cs-bp-device cs-bp-device--mobile"></div>
+          <strong>390px</strong>
+          <span>Mobile devices</span>
+        </div>
+        <div className="cs-breakpoint">
+          <div className="cs-bp-device cs-bp-device--tablet"></div>
+          <strong>744px</strong>
+          <span>Tablets</span>
+        </div>
+        <div className="cs-breakpoint">
+          <div className="cs-bp-device cs-bp-device--desktop"></div>
+          <strong>1280px</strong>
+          <span>Larger screens</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Accessibility */}
+    <div className="cs-block">
+      <p className="cs-label">Accessibility evaluation</p>
+      <p className="cs-body">Evaluated to meet WCAG 2.0 Accessibility standards. Each UI element was carefully checked using the Contrast Checker by DIAMANT to ensure a consistent visual experience.</p>
+      <div className="cs-a11y">
+        {[['Gradient buttons','AA'],['Gradient cards','AA'],['Text on colors','AA']].map(([name, rating]) =>
+          <div key={name} className="cs-a11y-item">
+            <div className="cs-a11y-swatch" style={{background: `linear-gradient(135deg, ${accent}, #1a5fa0)`}}></div>
+            <div>
+              <strong>{name}</strong>
+              <span className="cs-a11y-badge">{rating}</span>
+            </div>
+          </div>)}
+      </div>
+    </div>
+
+    {/* Outcome */}
+    <div className="cs-block">
+      <p className="cs-label">Outcome &amp; metrics</p>
+      <div className="cs-before-after">
+        <div className="cs-before">
+          <p className="cs-ba-label">Before</p>
+          <p>The original Logafit website lacked a clear structure and struggled with user navigation. As a result, users faced difficulties in finding key information, such as swimming classes or contact details.</p>
+        </div>
+        <div className="cs-after">
+          <p className="cs-ba-label">After</p>
+          <p>The redesigned Logafit website introduces a modern, user-centered approach. The new design provides a more engaging and streamlined experience, improving user satisfaction and retention.</p>
+        </div>
+      </div>
+      <p className="cs-sublabel" style={{marginTop:28}}>Highlights of the redesign</p>
+      <div className="cs-highlights">
+        <div className="cs-highlight">
+          <div className="cs-highlight-icon">🧭</div>
+          <strong>Enhanced Navigation</strong>
+          <p>The simplification of navigation has improved the overall user experience significantly.</p>
+        </div>
+        <div className="cs-highlight">
+          <div className="cs-highlight-icon">⚡</div>
+          <strong>Increased user satisfaction</strong>
+          <p>A 30% reduction in time to find information thanks to clear headings and organized sections.</p>
+        </div>
+        <div className="cs-highlight">
+          <div className="cs-highlight-icon">💬</div>
+          <strong>Positive Feedback</strong>
+          <p>85% of tested users provided positive feedback on the new navigation structure.</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Lessons learned */}
+    <div className="cs-block cs-block--dark">
+      <p className="cs-label cs-label--light">Lessons learned</p>
+      <p className="cs-big-quote cs-big-quote--light">This project was an invaluable experience that reinforced my understanding of user-centered design principles.</p>
       <div className="cs-lessons">
-        <div>
-          <strong>Wartość uproszczenia</strong>
-          <p>Redukcja liczby opcji i kategorii tworzy bardziej intuicyjny i mniej przytłaczający produkt.</p>
+        <div className="cs-lesson">
+          <strong>Working with the developer</strong>
+          <p>Maintaining clear communication and managing design details was key to a smooth handoff.</p>
         </div>
-        <div>
-          <strong>Feedback jako narzędzie</strong>
-          <p>Ciągła pętla feedbacku podczas procesu projektowania pomaga wcześnie identyfikować problemy, zanim staną się kosztowne.</p>
+        <div className="cs-lesson">
+          <strong>The importance of user feedback</strong>
+          <p>Using real feedback to design a product that truly resonated with users made the difference.</p>
         </div>
-        <div>
-          <strong>Praca z developerem</strong>
-          <p>Jasna komunikacja i precyzyjne specyfikacje projektowe to fundament sprawnej współpracy.</p>
+        <div className="cs-lesson">
+          <strong>The value of simplification</strong>
+          <p>Simplifying the navigation and content structure helped create a more intuitive product.</p>
         </div>
-        <div>
-          <strong>Użytkownicy mają zawsze rację</strong>
-          <p>Projektowanie oparte na realnych danych, nie założeniach, prowadzi do rozwiązań, które naprawdę rezonują z odbiorcami.</p>
+        <div className="cs-lesson">
+          <strong>Feedback is a powerful tool</strong>
+          <p>An ongoing feedback loop during design identifies problems early before they become costly.</p>
         </div>
       </div>
-    </section>
+    </div>
+
   </div>;
 }
 
