@@ -99,7 +99,7 @@ function useHashProject() {
 
 function Nav() {
   return <header className="nav">
-    <a className="brand" href="./#top" aria-label="Jakub Sobiecki home">JS</a>
+    <a className="brand" href="./#top" aria-label="Jakub Sobiecki home">Jakub Sobiecki</a>
     <nav aria-label="Główna nawigacja">
       <a href="./#projects">Projekty</a>
       <a href="./#about">O mnie</a>
@@ -108,27 +108,39 @@ function Nav() {
   </header>;
 }
 
+function HeroCard() {
+  const [photoReady, setPhotoReady] = useState(true);
+
+  return <div className="hero-card" aria-label="Skrót profilu">
+    <div className="orb one" />
+    <div className="orb two" />
+    <div className="photo-frame">
+      {photoReady ? <img src="assets/jakub-photo.jpg" alt="Jakub Sobiecki" onError={() => setPhotoReady(false)} /> : <div className="photo-placeholder">JS</div>}
+    </div>
+    <div className="profile-note">
+      <span>UX/UI Designer</span>
+      <strong>Research · Flow · Interface</strong>
+    </div>
+    <div className="mini-grid">
+      <span>Research</span><span>Flows</span><span>UI</span><span>Accessibility</span>
+    </div>
+  </div>;
+}
+
 function Hero() {
   return <section className="hero" id="top">
     <div className="shape shape-a" />
     <div className="shape shape-b" />
     <div className="hero-copy">
       <p className="kicker">Junior UX/UI Designer</p>
-      <h1>Projektuję produkty cyfrowe, które są proste, dostępne i przyjemne w użyciu.</h1>
-      <p className="lead">Cześć, z tej strony Jakub. Pomagam przekładać realne potrzeby użytkowników na czytelne flow, przemyślane interfejsy i doświadczenia bez zbędnego chaosu.</p>
+      <h1>Projektuję proste i dostępne interfejsy dla aplikacji oraz stron.</h1>
+      <p className="lead">Cześć, jestem Jakub. Łączę research, uporządkowane flow i estetyczny UI, żeby produkty cyfrowe były łatwiejsze w obsłudze — bez chaosu i zbędnych kliknięć.</p>
       <div className="hero-actions">
         <a className="btn primary" href="#projects">Zobacz projekty</a>
         <a className="btn ghost" href="mailto:mail@jakubsobiecki.pl">Napisz do mnie</a>
       </div>
     </div>
-    <div className="hero-card" aria-label="Skrót profilu">
-      <div className="orb one" />
-      <div className="orb two" />
-      <div className="profile-mark">UX<br/>UI</div>
-      <div className="mini-grid">
-        <span>Research</span><span>Flows</span><span>UI</span><span>Accessibility</span>
-      </div>
-    </div>
+    <HeroCard />
   </section>;
 }
 
@@ -173,191 +185,207 @@ function Donut({ pct, label }) {
 function LogafitCaseStudy() {
   return <div className="lf">
 
-    {/* Meta row */}
     <div className="lf-meta">
-      {[['Where','Toruń, Poland'],['What','Redesign of an existing website'],['Why','Portfolio Project'],['Role','Designer, Researcher'],['Category','Health & Fitness'],['When','January – September 2024']].map(([k,v]) =>
+      {[['📍 Where','Toruń, Poland'],['🌐 What','Redesign of an existing website'],['🤔 Why','Real-world implementation'],['🕵️ Role','Designer, Researcher'],['💪 Category','Health & Fitness'],['⏳ When','January – September 2024']].map(([k,v]) =>
         <div key={k}><span>{k}</span><strong>{v}</strong></div>)}
     </div>
 
-    {/* Redesign strategy */}
     <div className="lf-section">
       <p className="lf-eyebrow">Redesign strategy</p>
-      <p className="lf-quote">The existing Logafit website struggled with<br/>poor navigation and responsiveness.</p>
-      <p className="lf-quote">Our goal was to address these challenges<br/>by introducing a modern, user-centered approach.</p>
+      <p className="lf-quote">The existing Logafit website struggled with poor navigation and responsiveness.</p>
+      <p className="lf-quote">Our goal was to address these challenges by introducing a modern, user-centered approach.</p>
       <p className="lf-sublabel">Objectives</p>
       <div className="lf-objectives">
-        {[
-          ['Simplify navigation','Reduce and consolidate menu items so users find what they need faster.'],
-          ['Improve responsiveness','Redesign layouts to work fluidly on mobile and tablet devices.'],
-          ['Refresh visual identity','Modernise the UI to reflect Logafit\'s active, aquatic brand.'],
-          ['Boost accessibility','Achieve WCAG 2.0 AA contrast compliance across all UI elements.'],
-        ].map(([t,d]) => <div key={t} className="lf-objective"><strong>{t}</strong><p>{d}</p></div>)}
+        <div className="lf-objective"><strong>Enhance responsiveness</strong><p>Optimize the site to ensure seamless functionality on mobile devices and desktops.</p></div>
+        <div className="lf-objective"><strong>Improve visual appeal</strong><p>Refresh the website's design to better reflect Logafit's brand identity and values.</p></div>
+        <div className="lf-objective"><strong>Simplify navigation</strong><p>Consolidate redundant sections and group related content logically to reduce user confusion.</p></div>
       </div>
     </div>
 
-    {/* User research */}
     <div className="lf-section">
       <p className="lf-eyebrow">User research</p>
       <p className="lf-body">To better understand user pain points, I conducted a review of the website's structure and user feedback. The key findings highlighted difficulties with navigation and outdated content.</p>
-      <p className="lf-sublabel">Summary highlights</p>
+      <p className="lf-sublabel">Summary insights</p>
       <p className="lf-body">The research highlighted three main problem areas affecting user experience, as shown below.</p>
       <div className="lf-donuts">
-        <Donut pct={59} label="struggled with navigation" />
-        <Donut pct={28} label="found outdated content problematic" />
-        <Donut pct={13} label="mentioned issues with responsiveness" />
+        <Donut pct={59} label="struggled with navigation." />
+        <Donut pct={28} label="found outdated content problematic." />
+        <Donut pct={13} label="mentioned issues with responsiveness." />
       </div>
       <p className="lf-sublabel">Notable comments</p>
       <div className="lf-bubbles">
-        <div className="lf-bubble lf-bubble--l">"I can't find the schedule or any information about classes on this website."</div>
-        <div className="lf-bubble lf-bubble--r">"The website seems outdated, but the links are just broken."</div>
+        <div className="lf-bubble lf-bubble--l">"I had to click through three different tabs just to figure out where to register my child for swimming lessons. Not user-friendly at all."</div>
+        <div className="lf-bubble lf-bubble--r">"I tried to find the swimming schedule, but it was buried under so many tabs. It's frustrating!"</div>
       </div>
       <p className="lf-sublabel">Key findings</p>
       <div className="lf-findings">
         <div className="lf-finding">
           <div className="lf-finding-icon">🧭</div>
           <strong>Navigation confusion</strong>
-          <p>Users frequently had difficulty finding the location of activities/classes, buttons and schedules.</p>
+          <p>Users reported difficulty locating essential sections like booking forms and schedules due to a cluttered menu with redundant tabs.</p>
         </div>
         <div className="lf-finding">
           <div className="lf-finding-icon">📱</div>
           <strong>Mobile usability issues</strong>
-          <p>Poor mobile UX was highlighted as a significant barrier to accessing information on the go.</p>
+          <p>The mobile site lacked proper responsiveness, with small buttons and unoptimized layouts leading to frustration.</p>
         </div>
         <div className="lf-finding">
-          <div className="lf-finding-icon">📋</div>
+          <div className="lf-finding-icon">🕰️</div>
           <strong>Outdated content</strong>
-          <p>The website had a lot of outdated content — links and images were broken.</p>
+          <p>Some pages contained irrelevant or old information (e.g., events from 2019), reducing the perceived credibility of the website.</p>
         </div>
       </div>
     </div>
 
-    {/* Architecture improvements */}
     <div className="lf-section">
       <p className="lf-eyebrow">Architecture improvements</p>
-      <p className="lf-body">I consolidated similar sections, reduced the number of main categories, and made navigation more intuitive.</p>
+      <p className="lf-body">The original site had over 8 tabs, many containing redundant or outdated information. I consolidated similar sections, reduced the number of main categories, and made navigation more intuitive.</p>
       <p className="lf-sublabel">Changes made</p>
-      <div className="lf-arch">
-        <div className="lf-arch-col">
-          <div className="lf-arch-label lf-arch-label--before">Before</div>
-          {['Strona główna','O nas','Zajęcia','Grafik','Basen','Kontakt','Aktualności','Galeria'].map(i =>
-            <div key={i} className="lf-arch-item lf-arch-item--before">{i}</div>)}
-        </div>
-        <div className="lf-arch-arrow">→</div>
-        <div className="lf-arch-col">
-          <div className="lf-arch-label lf-arch-label--after">After</div>
-          {['Strona główna','Zajęcia & Grafik','O nas','Kontakt'].map(i =>
-            <div key={i} className="lf-arch-item lf-arch-item--after">{i}</div>)}
-          <ul className="lf-arch-notes">
-            <li>Grouping similar items to reduce cognitive load</li>
-            <li>Highlighted frequently accessible links</li>
-          </ul>
-        </div>
+      <div className="lf-changes">
+        <div className="lf-change"><span className="lf-change-icon">🗂️</span><p>Grouped similar content into broader categories to simplify navigation.</p></div>
+        <div className="lf-change"><span className="lf-change-icon">🗑️</span><p>Removed unnecessary tabs like old event pages.</p></div>
+        <div className="lf-change"><span className="lf-change-icon">📋</span><p>Highlighted the booking form on the homepage for easier access.</p></div>
       </div>
     </div>
 
-    {/* High-fidelity UI */}
     <div className="lf-section lf-section--mint">
       <p className="lf-eyebrow">High-fidelity UI</p>
       <p className="lf-body">The high-fidelity design for Logafit focuses on creating a visually engaging and user-friendly interface that reflects the brand's identity and encourages user interaction.</p>
+      <p className="lf-sublabel">Hero section</p>
+      <p className="lf-body">The hero section was designed to immediately capture user attention and guide them toward key actions.</p>
       <div className="lf-hifi">
         <div className="lf-hifi-point">
           <strong>A prominent call-to-action</strong>
-          <p>A large, clear message "Sign up for our activities", positioned at the centre to direct users to a key section.</p>
+          <p>A large, clear message, "Sign up for our activities!", placed at the center to direct users toward signing up.</p>
         </div>
         <div className="lf-hifi-point">
-          <strong>Brand elements</strong>
-          <p>Subtle, sharp graphics integrated throughout the section to visually connect with Logafit's aquatic theme and make the design more recognisable.</p>
+          <strong>Vivid imagery</strong>
+          <p>Photos highlighting the key services offered by Logafit, such as swimming lessons and aqua fitness.</p>
         </div>
         <div className="lf-hifi-point">
-          <strong>Macro elements</strong>
-          <p>Subtle, sharp graphics integrated throughout the hero section to visually identify with Logafit's theme and make the design more personalized.</p>
+          <strong>Wave elements</strong>
+          <p>Subtle wave graphics integrated throughout the section to visually connect with Logafit's aquatic theme and make the design more dynamic.</p>
         </div>
       </div>
-      <p className="lf-sublabel" style={{marginTop:28}}>Responsive design</p>
-      <p className="lf-body" style={{fontWeight:700,fontSize:18}}>A mobile-first approach was implemented to ensure usability on smaller screens.</p>
-      <p className="lf-body">Three breakpoints allowed the design to adapt seamlessly to different devices, ensuring a consistent user experience.</p>
+      <div className="lf-palette-row">
+        <div className="lf-palette-col">
+          <p className="lf-sublabel">Color palette</p>
+          <p className="lf-body-sm">The color scheme primarily draws from Logafit's branding, with gradients inspired by the logo.</p>
+          <div className="lf-swatches">
+            <div className="lf-swatch" style={{background:'linear-gradient(135deg,#3FBFA0,#1a7a52)'}}></div>
+            <div className="lf-swatch" style={{background:'linear-gradient(135deg,#56d4b5,#3FBFA0)'}}></div>
+            <div className="lf-swatch" style={{background:'#0E2A1E'}}></div>
+            <div className="lf-swatch" style={{background:'#ffffff',border:'1.5px solid #D5F0E8'}}></div>
+          </div>
+        </div>
+        <div className="lf-palette-col">
+          <p className="lf-sublabel">Typography</p>
+          <p className="lf-body-sm">Buttons — interactive elements like buttons were designed to stand out with rounded corners. I've used 8px corner radius.</p>
+          <div className="lf-type-samples">
+            <div><span className="lf-type-label">Medium</span><span className="lf-type-sample" style={{fontWeight:500}}>AaBbCcDd</span></div>
+            <div><span className="lf-type-label">Semi Bold</span><span className="lf-type-sample" style={{fontWeight:600}}>AaBbCcDd</span></div>
+          </div>
+          <p className="lf-type-name">Inter</p>
+        </div>
+      </div>
+      <p className="lf-sublabel" style={{marginTop:24}}>Responsive design</p>
+      <p className="lf-body" style={{fontWeight:700}}>A mobile-first approach was implemented to ensure usability on smaller screens.</p>
+      <p className="lf-body">These breakpoints allowed the design to adapt seamlessly to different devices, ensuring a consistent user experience.</p>
       <div className="lf-devices">
-        <div className="lf-device">
-          <div className="lf-device-frame lf-device-frame--mobile"></div>
-          <strong>390px</strong><span>Mobile devices</span>
-        </div>
-        <div className="lf-device">
-          <div className="lf-device-frame lf-device-frame--tablet"></div>
-          <strong>744px</strong><span>Tablets</span>
-        </div>
-        <div className="lf-device">
-          <div className="lf-device-frame lf-device-frame--desktop"></div>
-          <strong>1280px</strong><span>Larger screens</span>
-        </div>
+        <div className="lf-device"><div className="lf-device-frame lf-device-frame--mobile"></div><strong>390px</strong><span>Mobile devices</span></div>
+        <div className="lf-device"><div className="lf-device-frame lf-device-frame--tablet"></div><strong>768px</strong><span>Tablets</span></div>
+        <div className="lf-device"><div className="lf-device-frame lf-device-frame--desktop"></div><strong>1024px</strong><span>Desktops</span></div>
+        <div className="lf-device"><div className="lf-device-frame lf-device-frame--wide"></div><strong>1280–1536px</strong><span>Larger screens</span></div>
       </div>
     </div>
 
-    {/* Accessibility */}
     <div className="lf-section">
       <p className="lf-eyebrow">Accessibility evaluation</p>
-      <p className="lf-body">Evaluated to meet WCAG 2.0 Accessibility standards. Each UI element was carefully checked using the Contrast Checker by DIAMANT to ensure a consistent visual experience.</p>
+      <p className="lf-body">The redesigned Logafit website was evaluated to meet WCAG AA standards. Each key UI component was checked using tools like the Contrast Checker by WebAIM to ensure a user-friendly and inclusive experience.</p>
       <div className="lf-a11y">
         {[
-          ['Gradient buttons', `linear-gradient(135deg,${T},#1a7a52)`],
-          ['Gradient cards',   `linear-gradient(135deg,#2a9d7a,${T})`],
-          ['Text on colors',   `linear-gradient(135deg,#1a5f3c,#2e8f6a)`],
-        ].map(([name,bg]) =>
+          ['Gradient buttons','10.11:1 · 8:11.3:1','linear-gradient(135deg,#3FBFA0,#1a7a52)'],
+          ['Gradient cards','9.74:1 · 7.74:1','linear-gradient(135deg,#56d4b5,#3FBFA0)'],
+          ['Text on colors','5.13:1','linear-gradient(135deg,#1a5f3c,#2e8f6a)'],
+        ].map(([name,ratio,bg]) =>
           <div key={name} className="lf-a11y-row">
             <div className="lf-a11y-swatch" style={{background:bg}}></div>
-            <span className="lf-a11y-name">{name}</span>
-            <span className="lf-aa">AA</span>
+            <div className="lf-a11y-info">
+              <span className="lf-a11y-name">{name}</span>
+              <span className="lf-a11y-ratio">{ratio}</span>
+            </div>
+            <span className="lf-aa">WCAG AA: Pass</span>
           </div>)}
       </div>
     </div>
 
-    {/* Outcome & metrics */}
     <div className="lf-section">
       <p className="lf-eyebrow">Outcome &amp; metrics</p>
-      <p className="lf-body">The original Logafit website lacked a clear structure and struggled with user navigation.</p>
-      <p className="lf-body">As a result, users faced difficulties in finding key information, such as swimming classes or contact details.</p>
-      <p className="lf-outcome-headline">The redesigned Logafit website introduces a modern, user-centered approach.</p>
-      <p className="lf-body">The new design provides a more engaging and streamlined experience, improving user satisfaction and retention.</p>
-      <p className="lf-sublabel" style={{marginTop:20}}>Highlights of the redesign</p>
+      <div className="lf-before-after">
+        <div className="lf-before">
+          <p className="lf-ba-label">Before</p>
+          <p className="lf-body">The original Logafit website lacked a cohesive design and struggled with user navigation.</p>
+          <ul className="lf-ba-list">
+            <li>An outdated, static hero section with limited interactivity.</li>
+            <li>Overwhelming navigation tabs with redundant or poorly structured content.</li>
+            <li>Minimal focus on modern branding and engagement, leaving the site less appealing to users.</li>
+          </ul>
+          <p className="lf-body">As a result, users faced difficulties in finding key information, such as swimming classes or contact details.</p>
+        </div>
+        <div className="lf-after">
+          <p className="lf-ba-label">After</p>
+          <p className="lf-outcome-headline">The redesigned Logafit website introduces a modern, user-centered approach.</p>
+          <ul className="lf-ba-list">
+            <li>A dynamic hero section with a prominent call-to-action, visually engaging users with relevant imagery.</li>
+            <li>Simplified navigation with consolidated tabs and logical content grouping, ensuring ease of use.</li>
+            <li>A refreshed visual identity incorporating gradients and wave elements, aligning with Logafit's aquatic branding.</li>
+          </ul>
+          <p className="lf-body">The new design provides a more engaging and streamlined experience, improving user satisfaction and accessibility.</p>
+        </div>
+      </div>
+      <p className="lf-sublabel" style={{marginTop:24}}>Highlights of the redesign</p>
       <div className="lf-highlights">
         <div className="lf-highlight">
           <div className="lf-highlight-icon">🧭</div>
-          <strong>Enhanced Navigation</strong>
-          <p>The simplification of navigation has improved the overall user experience.</p>
+          <strong>Enhanced navigation</strong>
+          <p>The simplification of navigation tabs and consolidation of redundant sections reduced user confusion and improved the user journey.</p>
+          <p className="lf-metric">Navigation tasks completed 30% faster during user testing.</p>
         </div>
         <div className="lf-highlight">
-          <div className="lf-highlight-icon">⚡</div>
-          <strong>Increased user satisfaction</strong>
-          <p>The content redesign has led to a 30% reduction in time to find information.</p>
+          <div className="lf-highlight-icon">🚀</div>
+          <strong>Increased user engagement</strong>
+          <p>The modernized design, including an eye-catching hero section and prominent call-to-action buttons, encouraged more user interaction.</p>
+          <p className="lf-metric">Expected increase in sign-up rates by 15% based on initial feedback.</p>
         </div>
         <div className="lf-highlight">
           <div className="lf-highlight-icon">💬</div>
           <strong>Positive Feedback</strong>
-          <p>85% of tested users provided positive feedback on the new navigation structure.</p>
+          <p>Initial user feedback highlighted the improved aesthetics and ease of use, particularly in the homepage design and navigation structure.</p>
+          <p className="lf-metric">85% of surveyed users reported greater satisfaction with the redesigned website.</p>
         </div>
       </div>
     </div>
 
-    {/* Lessons learned */}
     <div className="lf-section lf-section--dark">
       <p className="lf-eyebrow lf-eyebrow--light">Lessons learned</p>
       <p className="lf-quote lf-quote--light">This project was an invaluable experience that reinforced my understanding of user-centered design principles.</p>
-      <p className="lf-sublabel lf-sublabel--light">Here's what I learned:</p>
+      <p className="lf-sublabel lf-sublabel--light">Here's what I've learned</p>
       <div className="lf-lessons">
         <div className="lf-lesson">
-          <strong>Working with the developer</strong>
-          <p>Maintaining clear communication and managing design details was key to a smooth handoff.</p>
+          <strong>🤝 Collaboration is Key</strong>
+          <p>Working closely with the development team taught me the importance of maintaining clear communication and providing detailed design documentation. Regular feedback loops ensured alignment and avoided major rework.</p>
         </div>
         <div className="lf-lesson">
-          <strong>The Importance of User Feedback</strong>
-          <p>Using real feedback to design a product that truly resonated with users.</p>
+          <strong>♿ Accessibility Matters</strong>
+          <p>This project reinforced the significance of designing for accessibility. Testing contrast ratios and ensuring WCAG compliance helped me create a more inclusive experience for all users.</p>
         </div>
         <div className="lf-lesson">
-          <strong>The Value of Simplification</strong>
-          <p>Simplifying navigation and content structure helped create a more intuitive product.</p>
+          <strong>✂️ The Value of Simplification</strong>
+          <p>Simplifying the navigation and grouping redundant sections into logical categories addressed real pain points, leading to a product that truly resonated with its audience.</p>
         </div>
         <div className="lf-lesson">
-          <strong>Feedback is a Powerful Tool</strong>
-          <p>An ongoing feedback loop during design identifies problems early before they become costly.</p>
+          <strong>💬 Feedback is a Powerful Tool</strong>
+          <p>Incorporating user feedback early in the process highlighted how small changes can significantly impact usability and user satisfaction.</p>
         </div>
       </div>
     </div>
@@ -366,7 +394,6 @@ function LogafitCaseStudy() {
 }
 
 function ProjectDetail({ project }) {
-  const hasWebCaseStudy = project.id === 'logafit';
   return <main className="detail-page" style={{'--accent': project.accent}}>
     <a className="back-link" href="./#projects">← Wróć do projektów</a>
     <section className="detail-hero">
@@ -387,10 +414,7 @@ function ProjectDetail({ project }) {
           <span className="pdf-label">Case study</span>
           <a className="text-link" href={project.pdf} target="_blank" rel="noopener noreferrer">Pobierz PDF ↓</a>
         </div>
-        {hasWebCaseStudy
-          ? <LogafitCaseStudy />
-          : <div className="pdf-viewer">{project.pages.map((src, i) => <img key={i} src={src} alt={`Strona case study ${i + 1}`} className="pdf-page" loading="lazy" />)}</div>
-        }
+        <div className="pdf-viewer">{project.pages.map((src, i) => <img key={i} src={src} alt={`Strona case study ${i + 1}`} className="pdf-page" loading="lazy" />)}</div>
       </div>
     </section>
   </main>;
@@ -399,9 +423,9 @@ function ProjectDetail({ project }) {
 function Projects() {
   return <section className="projects" id="projects">
     <div className="section-head">
-      <p className="kicker">Moje portfolio</p>
+      <p className="kicker">Portfolio</p>
       <h2>Wybrane projekty</h2>
-      <p>Trzy case studies w formie krótkich kafli. Pełny proces i PDF są dostępne po wejściu w konkretny projekt.</p>
+      <p>Case studies pokazujące mój proces: od zrozumienia problemu i struktury informacji, po dopracowany interfejs oraz responsywność.</p>
     </div>
     <div className="project-list">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.id} />)}</div>
   </section>;
@@ -411,11 +435,11 @@ function About() {
   return <section className="about" id="about">
     <div>
       <p className="kicker">O mnie</p>
-      <h2>Ciekawość, prostota i dostępność.</h2>
+      <h2>Projektuję z myślą o ludziach, nie tylko o ekranach.</h2>
     </div>
     <div className="about-copy">
-      <p>Jestem Junior UX/UI Designerem z zamiłowaniem do projektowania produktów cyfrowych oraz ciągłego uczenia się.</p>
-      <p>Lubię pomagać ludziom poprzez ulepszanie ich doświadczeń. Dążę do prostoty, dostępności i ograniczania wykluczenia cyfrowego — szczególnie tam, gdzie interfejs może realnie ułatwić codzienne zadania.</p>
+      <p>Jestem Junior UX/UI Designerem. Najbardziej interesuje mnie moment, w którym dobrze ułożona struktura, prosta komunikacja i dopracowany UI zaczynają realnie ułatwiać korzystanie z produktu.</p>
+      <p>W projektach stawiam na czytelność, dostępność i spokojny proces: najpierw rozumiem problem, potem porządkuję flow, a na końcu dopracowuję warstwę wizualną.</p>
     </div>
   </section>;
 }
@@ -447,7 +471,7 @@ function HomePage() {
 function App() {
   const selectedProject = useHashProject();
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (selectedProject) window.scrollTo({ top: 0, behavior: 'instant' });
   }, [selectedProject?.id]);
   return <>
     <Nav />
