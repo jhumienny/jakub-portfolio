@@ -340,8 +340,19 @@ function getInitialLanguage() {
   return navigator.language?.toLowerCase().startsWith('pl') ? 'pl' : 'en';
 }
 
+function getInitialHash() {
+  const hash = window.location.hash;
+  const pageSections = ['#projects', '#about', '#contact'];
+  if (pageSections.includes(hash)) {
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'auto' }));
+    return '';
+  }
+  return hash;
+}
+
 function useHashProject(projectList) {
-  const [hash, setHash] = useState(window.location.hash);
+  const [hash, setHash] = useState(getInitialHash);
   useEffect(() => {
     const onHash = () => setHash(window.location.hash);
     window.addEventListener('hashchange', onHash);
