@@ -969,3 +969,31 @@ body{background:transparent!important}
   border-color:transparent!important;
   outline:none!important;
 }
+
+/* Kill mobile Safari tap/focus rectangle on brand link — letters only */
+.brand,
+.brand:link,
+.brand:visited,
+.brand:hover,
+.brand:focus,
+.brand:focus-visible,
+.brand:active,
+.brand--pulse,
+.brand--pulse:hover,
+.brand--pulse:focus,
+.brand--pulse:focus-visible,
+.brand--pulse:active{
+  -webkit-tap-highlight-color:transparent!important;
+  -webkit-touch-callout:none!important;
+  appearance:none!important;
+  background:transparent!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  text-decoration:none!important;
+}
+.brand::before,
+.brand::after{
+  content:none!important;
+  display:none!important;
+}
