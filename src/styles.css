@@ -917,3 +917,10 @@ body{background:transparent!important}
     white-space:normal!important;
   }
 }
+
+/* Mobile contact: match social button corner radius to email/phone */
+@media(max-width:560px){
+  .contact-links a.contact-link--social{
+    border-radius:16px!important;
+  }
+}
