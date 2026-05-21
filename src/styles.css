@@ -924,3 +924,14 @@ body{background:transparent!important}
     border-radius:16px!important;
   }
 }
+
+/* iOS Safari: blend status bar with the fixed top navigation */
+@supports (padding-top: env(safe-area-inset-top)){
+  @media(max-width:560px){
+    html{background:#2E4935!important}
+    body{background:#F7FCEB!important}
+    .nav{
+      padding-top:calc(9px + env(safe-area-inset-top))!important;
+    }
+  }
+}
