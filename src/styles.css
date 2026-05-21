@@ -925,13 +925,47 @@ body{background:transparent!important}
   }
 }
 
-/* iOS Safari: blend status bar with the fixed top navigation */
-@supports (padding-top: env(safe-area-inset-top)){
-  @media(max-width:560px){
-    html{background:#2E4935!important}
-    body{background:#F7FCEB!important}
-    .nav{
-      padding-top:calc(9px + env(safe-area-inset-top))!important;
-    }
+
+/* Mobile nav: stable equal-width labels, no active-width jumping */
+@media(max-width:560px){
+  .nav{padding:10px 12px 12px!important;row-gap:6px!important}
+  .brand{flex:1 0 100%!important;justify-content:center!important;padding:4px 0!important;border:0!important;outline:0!important;background:transparent!important;box-shadow:none!important}
+  .nav nav{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) auto!important;
+    gap:6px!important;
+    align-items:center!important;
+    justify-content:stretch!important;
   }
+  .nav nav a,
+  .nav nav a.active,
+  .nav nav a:not(.active){
+    width:100%!important;
+    min-width:0!important;
+    justify-self:stretch!important;
+    padding:0 10px!important;
+    min-height:42px!important;
+    border-radius:16px!important;
+    text-align:center!important;
+    white-space:nowrap!important;
+  }
+  .nav nav a:before{content:none!important;display:none!important}
+  .nav nav a.active{background:rgba(221,247,108,.14)!important;color:#E9FF9D!important}
+  .language-switch{min-width:54px!important;min-height:42px!important;padding:8px 9px!important;border-radius:16px!important}
+}
+
+/* Brand click animation: letters jump only, never show button-like outline */
+.brand,
+.brand:hover,
+.brand:focus,
+.brand:focus-visible,
+.brand:active,
+.brand--pulse,
+.brand--pulse:hover,
+.brand--pulse:focus-visible{
+  background:transparent!important;
+  box-shadow:none!important;
+  border-color:transparent!important;
+  outline:none!important;
 }
