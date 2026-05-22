@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <rect width="256" height="256" rx="56" fill="#0c2b22"/>
-  <circle cx="128" cy="128" r="82" fill="#d7ff4a"/>
-  <text x="128" y="160" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="86" font-weight="800" letter-spacing="-7" fill="#0c2b22">JS</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#0c2b22"/>
+  <g transform="rotate(-4 256 256)">
+    <text x="256" y="314" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="184" font-weight="950" letter-spacing="-18" fill="#ddf76c">JS</text>
+  </g>
 </svg>
