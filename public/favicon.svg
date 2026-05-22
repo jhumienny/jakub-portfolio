@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#0c2b22"/>
   <g transform="rotate(-4 256 256)">
-    <text x="256" y="314" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="184" font-weight="950" letter-spacing="-18" fill="#ddf76c">JS</text>
+    <text x="256" y="300" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="150" font-weight="950" letter-spacing="-15" fill="#ddf76c">JS</text>
   </g>
 </svg>
