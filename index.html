@@ -3,12 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Jakub Sobiecki's portfolio — Junior UX/UI Designer. Case studies: Logafit, CalmFlow, Cuffka." />
-    <title>Jakub Sobiecki — UX/UI Designer</title>
+    <meta name="description" content="Jakub Sobiecki" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jakubsobiecki.pl/" />
+    <meta property="og:title" content="Jakub Sobiecki" />
+    <meta property="og:description" content="Jakub Sobiecki" />
+    <meta property="og:image" content="https://jakubsobiecki.pl/og-image.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Jakub Sobiecki" />
+    <meta name="twitter:description" content="Jakub Sobiecki" />
+    <meta name="twitter:image" content="https://jakubsobiecki.pl/og-image.png" />
+    <script>
+      (() => {
+        const sectionHashes = ['#projects', '#about', '#contact'];
+        if (sectionHashes.includes(window.location.hash)) {
+          window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+          window.__resetSectionScroll = true;
+          window.scrollTo(0, 0);
+          window.addEventListener('pageshow', () => window.scrollTo(0, 0), { once: true });
+        }
+      })();
+    </script>
+    <title>Jakub Sobiecki</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="./assets/index-B-drXz7K.js"></script>
+    <script type="module" crossorigin src="./assets/index-BEIhfTSz.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-Dj0LL0uX.css">
   </head>
   <body>
