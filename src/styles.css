@@ -997,3 +997,17 @@ body{background:transparent!important}
   content:none!important;
   display:none!important;
 }
+
+/* CV button */
+.cv-link{display:inline-flex!important;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:12px 18px!important;border-radius:999px;color:#fff!important;font-size:14px!important;font-weight:950!important;white-space:nowrap;transition:.2s ease}
+.cv-link:before{content:none!important;display:none!important}
+.cv-download-icon{width:16px;height:16px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:.2s ease}
+.cv-link:hover,.cv-link:focus-visible{background:rgba(221,247,108,.16)!important;color:#E9FF9D!important;transform:none!important}
+.cv-link:hover .cv-download-icon,.cv-link:focus-visible .cv-download-icon{transform:translateY(1px)}
+
+@media(max-width:560px){
+  .nav nav{grid-template-columns:repeat(3,minmax(0,1fr)) auto auto!important;gap:4px!important}
+  .cv-link{width:100%!important;min-height:42px!important;padding:8px 10px!important;border-radius:16px!important;background:rgba(255,255,255,.08);border:1px solid rgba(221,247,108,.22);font-size:12px!important;gap:5px}
+  .cv-download-icon{width:14px;height:14px}
+  .cv-link:hover,.cv-link:focus-visible{background:rgba(221,247,108,.16)!important}
+}

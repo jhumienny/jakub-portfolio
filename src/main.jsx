@@ -98,6 +98,7 @@ const projects = [
 const ui = {
   en: {
     nav: { projects: 'Projects', about: 'About', contact: 'Contact' },
+    cv: { label: 'CV', pl: 'Po polsku', en: 'In English' },
     hero: {
       title: 'I design simple, accessible digital products.',
       lead: 'For over **4 years**, I’ve been developing my skills in **UX/UI Design**, focusing on simplicity, clear user flows, and experiences without unnecessary chaos. My **customer-facing experience** helps me understand user frustrations and translate them into more intuitive interfaces.',
@@ -131,6 +132,7 @@ const ui = {
   },
   pl: {
     nav: { projects: 'Projekty', about: 'O mnie', contact: 'Kontakt' },
+    cv: { label: 'CV', pl: 'Po polsku', en: 'In English' },
     hero: {
       title: 'Projektuję proste i dostępne produkty cyfrowe.',
       lead: 'Od ponad **4 lat** rozwijam się w **UX/UI Designie**, skupiając się na prostocie, projektowaniu czytelnych flow i doświadczeniach bez zbędnego chaosu. **Doświadczenie w pracy z klientami** pomaga mi lepiej rozumieć frustracje użytkowników i przekładać je na bardziej intuicyjne interfejsy.',
@@ -382,6 +384,16 @@ function LanguageSwitch({ lang, setLang }) {
   </button>;
 }
 
+function CvLink({ lang, t }) {
+  const file = lang === 'pl' ? 'jakub_sobiecki_CV_2026_UX_PL.pdf' : 'jakub_sobiecki_CV_2026_UX_EN.pdf';
+  return <a className="cv-link" href={`./cv/${file}`} download={file} aria-label={lang === 'pl' ? 'Pobierz CV po polsku' : 'Download CV in English'}>
+    <span>{t.cv.label}</span>
+    <svg className="cv-download-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2" />
+    </svg>
+  </a>;
+}
+
 function Nav({ lang, setLang, t }) {
   const [activeSection, setActiveSection] = useState('top');
   const [brandPulse, setBrandPulse] = useState(false);
@@ -462,6 +474,7 @@ function Nav({ lang, setLang, t }) {
       <NavLink section="projects" activeSection={activeSection} onActivate={handleActivate}>{t.nav.projects}</NavLink>
       <NavLink section="about" activeSection={activeSection} onActivate={handleActivate}>{t.nav.about}</NavLink>
       <NavLink section="contact" activeSection={activeSection} onActivate={handleActivate}>{t.nav.contact}</NavLink>
+      <CvLink lang={lang} t={t} />
       <LanguageSwitch lang={lang} setLang={setLang} />
     </nav>
   </header>;
@@ -887,6 +900,9 @@ function App() {
 
   useEffect(() => {
     window.history.scrollRestoration = 'manual';
+    if (window.__resetSectionScroll) {
+      window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'auto' }));
+    }
   }, []);
 
   useEffect(() => {
