@@ -494,7 +494,7 @@ function Hero({ t, lang }) {
       </p>
       <div className="hero-actions">
         <a className="btn primary" href="#projects">{t.hero.projects}</a>
-        <a className="btn ghost" href="#contact">{t.hero.contact}</a>
+        <a className="btn ghost" href="mailto:mail@jakubsobiecki.pl">{t.hero.contact}</a>
       </div>
     </div>
     <div className="hero-card" aria-label={t.hero.profileLabel}>
@@ -823,39 +823,22 @@ function Availability({ lang }) {
 }
 
 function Contact({ t }) {
-  const [phoneRevealed, setPhoneRevealed] = useState(false);
-  const emailParts = ['mail', 'jakubsobiecki', 'pl'];
-  const email = `${emailParts[0]}${String.fromCharCode(64)}${emailParts[1]}.${emailParts[2]}`;
-  const phoneParts = ['+48', '577', '810', '769'];
-  const phoneDisplay = phoneParts.join(' ');
-  const phoneHref = `tel:${phoneParts.join('').replace('+', '+')}`;
-
   return <div className="contact-anchor">
     <footer className="contact">
       <p className="kicker">{t.contact.kicker}</p>
       <h2>{t.contact.title}</h2>
       <div className="contact-links">
-        <a className="contact-link contact-link--direct" href={`mailto:${email}`} aria-label="Email">
+        <a className="contact-link contact-link--direct" href="mailto:mail@jakubsobiecki.pl" aria-label="Email">
           <span className="contact-icon contact-icon--brand" aria-hidden="true">@</span>
-          <span className="contact-text">{email}</span>
+          <span className="contact-text">mail@jakubsobiecki.pl</span>
         </a>
-        <a
-          className={`contact-link contact-link--direct contact-link--phone${phoneRevealed ? ' is-revealed' : ''}`}
-          href={phoneHref}
-          aria-label="Phone"
-          onMouseEnter={() => setPhoneRevealed(true)}
-          onFocus={() => setPhoneRevealed(true)}
-          onClick={() => setPhoneRevealed(true)}
-        >
+        <a className="contact-link contact-link--direct" href="tel:+48577810769" aria-label="Phone">
           <span className="contact-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false">
               <path d="M7.2 4.8l2.1 4.8-2 1.2c1.1 2.3 2.8 4 5.1 5.1l1.2-2 4.8 2.1-1.1 3.1c-.3.8-1.1 1.3-2 1.1C9 19.2 4.8 15 3.8 8.7c-.1-.9.3-1.7 1.1-2l2.3-1.9z" />
             </svg>
           </span>
-          <span className="contact-text contact-phone-text" aria-label={phoneDisplay}>
-            <span className="contact-phone-prefix">{phoneParts[0]}</span>
-            <span className="contact-phone-hidden">{phoneParts.slice(1).join(' ')}</span>
-          </span>
+          <span className="contact-text">+48 577 810 769</span>
         </a>
         <a className="contact-link contact-link--social" href="https://www.linkedin.com/in/jakubsobiecki/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <span className="contact-icon contact-icon--brand" aria-hidden="true">in</span>
