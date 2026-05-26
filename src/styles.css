@@ -1007,9 +1007,9 @@ body{background:transparent!important}
 
 @media(max-width:560px){
   .nav nav{grid-template-columns:repeat(3,minmax(0,1fr)) auto auto!important;gap:4px!important}
-  .cv-link{width:100%!important;min-height:42px!important;padding:8px 10px!important;border-radius:16px!important;background:rgba(255,255,255,.08);border:1px solid rgba(221,247,108,.22);font-size:12px!important;gap:5px}
+  .cv-link{width:100%!important;min-height:42px!important;padding:8px 10px!important;border-radius:16px!important;background:transparent!important;border:1px solid transparent!important;box-shadow:none!important;font-size:12px!important;gap:5px}
   .cv-download-icon{width:14px;height:14px}
-  .cv-link:hover,.cv-link:focus-visible{background:rgba(221,247,108,.16)!important}
+  .cv-link:hover,.cv-link:focus-visible{background:rgba(221,247,108,.16)!important;border-color:rgba(221,247,108,.20)!important;box-shadow:0 0 0 1px rgba(221,247,108,.08),0 8px 24px rgba(221,247,108,.10)!important}
 }
 
 /* Contact anti-scraping / progressive reveal */
@@ -1024,6 +1024,13 @@ body{background:transparent!important}
   .contact-phone-hidden{filter:blur(4px)}
 }
 
-/* Final safety: keep hero skill chips rounded */
-.mini-grid span{border-radius:18px!important;overflow:hidden}
-@media(max-width:560px){.mini-grid span{border-radius:12px!important}}
+/* Mobile hero-card clipping fix: keep blurred green orbs inside rounded card */
+.hero-card{
+  overflow:hidden!important;
+  background-clip:padding-box!important;
+  transform:translateZ(0);
+  -webkit-mask-image:-webkit-radial-gradient(white,black);
+  clip-path:inset(0 round 44px);
+}
+@media(max-width:900px){.hero-card{clip-path:inset(0 round 28px)}}
+@media(max-width:560px){.hero-card{clip-path:inset(0 round 24px)}}
