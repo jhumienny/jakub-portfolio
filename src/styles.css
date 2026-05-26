@@ -1001,9 +1001,9 @@ body{background:transparent!important}
 /* CV button */
 .cv-link{display:inline-flex!important;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:12px 18px!important;border-radius:999px;color:#fff!important;font-size:14px!important;font-weight:950!important;white-space:nowrap;transition:.2s ease}
 .cv-link:before{content:none!important;display:none!important}
-.cv-download-icon{width:16px;height:16px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:.2s ease}
+.cv-download-icon{width:16px;height:16px;display:block;flex:0 0 auto;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:.2s ease;transform:translateY(-.5px)}
 .cv-link:hover,.cv-link:focus-visible{background:rgba(221,247,108,.16)!important;color:#E9FF9D!important;transform:none!important}
-.cv-link:hover .cv-download-icon,.cv-link:focus-visible .cv-download-icon{transform:translateY(1px)}
+.cv-link:hover .cv-download-icon,.cv-link:focus-visible .cv-download-icon{transform:translateY(-.5px)}
 
 /* CV must read as a plain nav item by default — no pill/fill until interaction */
 .nav nav a.cv-link,
