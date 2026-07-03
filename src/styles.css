@@ -1034,8 +1034,9 @@ body{background:transparent!important}
 }
 
 /* Contact anti-scraping / progressive reveal */
-.contact-link--phone .contact-phone-text{display:inline-flex;align-items:center;gap:.28em;white-space:nowrap}
-.contact-phone-hidden{display:inline-block;filter:blur(5px);opacity:.62;transform:translateY(.5px);transition:filter .18s ease,opacity .18s ease;text-shadow:0 0 8px currentColor;user-select:none}
+.contact-link--phone .contact-phone-text{display:inline-flex;align-items:center;gap:.28em;line-height:1;white-space:nowrap}
+.contact-phone-prefix,.contact-phone-hidden{display:inline-flex;align-items:center;line-height:1}
+.contact-phone-hidden{filter:blur(5px);opacity:.62;transition:filter .18s ease,opacity .18s ease;text-shadow:0 0 8px currentColor;user-select:none}
 .contact-link--phone:hover .contact-phone-hidden,
 .contact-link--phone:focus-visible .contact-phone-hidden,
 .contact-link--phone.is-revealed .contact-phone-hidden{filter:blur(0);opacity:1;text-shadow:none;user-select:text}
