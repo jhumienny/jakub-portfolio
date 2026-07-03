@@ -206,7 +206,7 @@ const projectCopy = {
       subtitle: 'Revitalizing wellness — modernizacja strony fitness z naciskiem na prostszą nawigację, responsywność i dostępność.',
       stats: [['59%', 'użytkowników miało problem z nawigacją'], ['30%', 'szybsze wykonanie zadań nawigacyjnych'], ['85%', 'badanych zgłosiło większą satysfakcję']],
       what: 'Redesign istniejącej strony internetowej',
-      why: 'Realne wdrożenie',
+      why: 'Wdrożony projekt komercyjny',
       role: 'Projektant, badacz',
       category: 'Zdrowie i fitness',
       process: ['Strategia redesignu', 'Badania użytkowników', 'Usprawnienia architektury informacji', 'Interfejs high-fidelity', 'Projekt responsywny', 'Ocena dostępności', 'Wyniki i metryki', 'Wnioski z projektu'],
